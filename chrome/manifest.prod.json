@@ -1,10 +1,10 @@
 {
   "version": "0.0.0",
-  "name": "react-chrome-extension-example",
+  "name": "Customise New Tab",
   "manifest_version": 2,
-  "description": "Example for react-chrome-extension-boilerplate",
+  "description": "Customise Chrome's new tab page",
   "browser_action": {
-    "default_title": "React Chrome Extension Example",
+    "default_title": "Chrome extension",
     "default_popup": "popup.html"
   },
   "icons": {
