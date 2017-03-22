@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-
+import style from './Sections.css';
 
 export default class Sections extends Component {
 
@@ -24,7 +24,7 @@ export default class Sections extends Component {
   render() {
     const { sections } = this.props;
     return ( 
-      <section className='sidebar'>
+      <section className={style.sidebar}>
         {this.renderSections(sections)}
       </section>
     );

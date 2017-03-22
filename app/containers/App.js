@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 import MainSection from '../components/MainSection';
 import Sections from '../components/Sections';
+import Bookmarks from '../components/Bookmarks';
 import * as TodoActions from '../actions/todos';
 import style from './App.css';
 
@@ -32,7 +33,7 @@ export default class App extends Component {
     return (
       <div>
         <Sections sections={sections} />
-
+        <Bookmarks bookmarks={bookmarks} />
         <div className={style.normal}>
           <Header addTodo={actions.addTodo} />
           <MainSection todos={todos} actions={actions} />

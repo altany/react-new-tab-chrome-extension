@@ -3,6 +3,9 @@ import * as ActionTypes from '../constants/ActionTypes';
 const initialState = [{
   title: 'Work',
   id: 0
+}, {
+  title: 'Fun',
+  id: 1
 }];
 
 const actionsMap = {
