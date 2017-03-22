@@ -4,28 +4,35 @@ import style from './Sections.css';
 export default class Sections extends Component {
 
   static propTypes = {
-    sections: PropTypes.array.isRequired
+    sections: PropTypes.array.isRequired,
+    select: PropTypes.func.isRequired
   };
 
   constructor(props, context) {
     super(props, context);
   }
 
-  renderSections(sections) {
+  renderSections(sections, select) {
     if (sections.length) {
       return (
         <nav>
-          { sections.map((section, index) => <div key={index}>Section {index}: {section.title}</div>) } 
+          { sections.map((section, index) =>
+            <div
+              className={section.selected ? 'selected' : ''}
+              key={index}
+              onClick={select}
+            >{section.title}</div>
+          ) }
         </nav>
       );
     }
   }
 
   render() {
-    const { sections } = this.props;
-    return ( 
+    const { sections, select } = this.props;
+    return (
       <section className={style.sidebar}>
-        {this.renderSections(sections)}
+        {this.renderSections(sections, select)}
       </section>
     );
   }
