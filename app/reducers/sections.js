@@ -2,17 +2,20 @@ import * as ActionTypes from '../constants/ActionTypes';
 
 const initialState = [{
   title: 'Work',
-  id: 0
+  id: 0,
+  selected: true
 }, {
   title: 'Fun',
-  id: 1
+  id: 1,
+  selected: false
 }];
 
 const actionsMap = {
   [ActionTypes.ADD_SECTION](state, action) {
     return [{
       id: state.reduce((maxId, section) => Math.max(section.id, maxId), -1) + 1,
-      title: action.title
+      title: action.title,
+      selected: false
     }, ...state];
   },
   [ActionTypes.DELETE_SECTION](state, action) {
@@ -28,10 +31,15 @@ const actionsMap = {
         }) :
         section)
     );
+  },
+  [ActionTypes.SELECT_SECTION](state, action) {
+    return state.map(section =>
+      Object.assign({}, section, { selected: section.id === action.id })
+    );
   }
 };
 
-export default function bookmarks(state = initialState, action) {
+export default function sections(state = initialState, action) {
   const reduceFn = actionsMap[action.type];
   if (!reduceFn) return state;
   return reduceFn(state, action);

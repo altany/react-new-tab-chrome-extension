@@ -15,3 +15,4 @@ export const EDIT_BOOKMARK = 'EDIT_BOOKMARK';
 export const ADD_SECTION = 'ADD_SECTION';
 export const DELETE_SECTION = 'DELETE_SECTION';
 export const EDIT_SECTION = 'EDIT_SECTION';
+export const SELECT_SECTION = 'SELECT_SECTION';

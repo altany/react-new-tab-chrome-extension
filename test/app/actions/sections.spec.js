@@ -24,4 +24,11 @@ describe('section actions', () => {
       title: 'Updated section'
     });
   });
+
+  it('selectSection should create SELECT_SECTION action', () => {
+    expect(actions.selectSection(0)).to.eql({
+      type: types.SELECT_SECTION,
+      id: 0
+    });
+  });
 });

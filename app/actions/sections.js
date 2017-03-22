@@ -11,3 +11,7 @@ export function deleteSection(id) {
 export function editSection(id, title) {
   return { type: types.EDIT_SECTION, id, title };
 }
+
+export function selectSection(id) {
+  return { type: types.SELECT_SECTION, id };
+}

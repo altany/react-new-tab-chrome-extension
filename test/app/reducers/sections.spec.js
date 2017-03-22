@@ -8,7 +8,12 @@ describe('sections reducer', () => {
       sections(undefined, {})
     ).to.eql([{
       title: 'Work',
+      selected: true,
       id: 0
+    }, {
+      title: 'Fun',
+      id: 1,
+      selected: false,
     }]);
   });
 
@@ -20,12 +25,14 @@ describe('sections reducer', () => {
       })
     ).to.eql([{
       title: 'Work',
+      selected: false,
       id: 0
     }]);
 
     expect(
       sections([{
         title: 'Work',
+        selected: false,
         id: 0
       }], {
         type: types.ADD_SECTION,
@@ -33,9 +40,11 @@ describe('sections reducer', () => {
       })
     ).to.eql([{
       title: 'One more section',
+      selected: false,
       id: 1
     }, {
       title: 'Work',
+      selected: false,
       id: 0
     }]);
   });
@@ -44,9 +53,11 @@ describe('sections reducer', () => {
     expect(
       sections([{
         title: 'Work',
+        selected: true,
         id: 0
       }, {
         title: 'One more section',
+        selected: false,
         id: 1
       }], {
         type: types.DELETE_SECTION,
@@ -54,6 +65,7 @@ describe('sections reducer', () => {
       })
     ).to.eql([{
       title: 'Work',
+      selected: true,
       id: 0
     }]);
   });
@@ -62,9 +74,11 @@ describe('sections reducer', () => {
     expect(
       sections([{
         title: 'Work',
+        selected: false,
         id: 0
       }, {
         title: 'One more section',
+        selected: false,
         id: 1
       }], {
         type: types.EDIT_SECTION,
@@ -73,9 +87,36 @@ describe('sections reducer', () => {
       })
     ).to.eql([{
       title: 'Work',
+      selected: false,
       id: 0
     }, {
       title: 'Edit the section',
+      selected: false,
+      id: 1
+    }]);
+  });
+
+  it('should handle SELECT_SECTION', () => {
+    expect(
+      sections([{
+        title: 'Work',
+        selected: true,
+        id: 0
+      }, {
+        title: 'One more section',
+        selected: false,
+        id: 1
+      }], {
+        type: types.SELECT_SECTION,
+        id: 1
+      })
+    ).to.eql([{
+      title: 'Work',
+      selected: false,
+      id: 0
+    }, {
+      title: 'One more section',
+      selected: true,
       id: 1
     }]);
   });
