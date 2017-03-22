@@ -7,4 +7,4 @@ export default combineReducers({
   todos,
   bookmarks,
   sections
-})
+});

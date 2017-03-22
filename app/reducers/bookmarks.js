@@ -10,7 +10,7 @@ const initialState = [{
   title: 'Demo Work Bookmark',
   url: 'http://tany4.com',
   sectionId: 0,
-  id: 0
+  id: 1
 }];
 
 const actionsMap = {
@@ -31,9 +31,9 @@ const actionsMap = {
     return state.map(bookmark =>
       (bookmark.id === action.id ?
         Object.assign({}, bookmark, {
-          title: action.title,
-          url: action.url,
-          sectionId: action.sectionId || null
+          title: action.title || bookmark.title,
+          url: action.url || bookmark.url,
+          sectionId: action.sectionId || bookmark.sectionId
         }) :
         bookmark)
     );
