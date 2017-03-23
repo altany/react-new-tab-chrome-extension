@@ -3,7 +3,7 @@ import * as ActionTypes from '../constants/ActionTypes';
 const initialState = [{
   title: 'Work',
   id: 0,
-  selected: true
+  selected: false
 }, {
   title: 'Fun',
   id: 1,

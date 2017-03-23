@@ -10,7 +10,7 @@ import * as bookmarksActions from '../actions/bookmarks';
   (state) => {
     let selectedSection = state.sections.filter(section => section.selected === true);
     selectedSection = selectedSection.length ? selectedSection[0].id : null;
-    const bookmarks = selectedSection ?
+    const bookmarks = selectedSection !== null ?
         state.bookmarks.filter(bookmark => bookmark.sectionId === selectedSection) :
         state.bookmarks;
     return {
