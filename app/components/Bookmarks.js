@@ -7,25 +7,28 @@ export default class Bookmarks extends Component {
     bookmarks: PropTypes.array.isRequired
   };
 
-  constructor(props, context) {
-    super(props, context);
-  }
+  renderBookmarks() {
+    const { bookmarks } = this.props;
 
-  renderBookmarks(bookmarks) {
     if (bookmarks.length) {
       return (
         <nav>
-          { bookmarks.map((bookmark, index) => <div key={index}>Bookmark {index}: {bookmark.title}</div>) } 
+          { bookmarks.map((bookmark, index) =>
+            <a
+              href={bookmark.url}
+              key={index}
+              className={style.link}
+            >{bookmark.title}</a>
+          )}
         </nav>
       );
     }
   }
 
   render() {
-    const { bookmarks } = this.props;
-    return ( 
+    return (
       <main className={style.main}>
-        {this.renderBookmarks(bookmarks)}
+        {this.renderBookmarks()}
       </main>
     );
   }

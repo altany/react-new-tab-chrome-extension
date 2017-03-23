@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Provider } from 'react-redux';
 import App from './App';
-import Bookmarks from './Bookmarks';
+import BookmarkApp from './BookmarkApp';
 
 export default class Root extends Component {
 
@@ -15,7 +15,7 @@ export default class Root extends Component {
       <Provider store={store}>
         <div>
           <App />
-          <Bookmarks />
+          <BookmarkApp />
         </div>
       </Provider>
     );

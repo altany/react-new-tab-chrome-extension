@@ -10,13 +10,21 @@ import * as bookmarksActions from '../actions/bookmarks';
   (state) => {
     let selectedSection = state.sections.filter(section => section.selected === true);
     selectedSection = selectedSection.length ? selectedSection[0].id : null;
+
+    const sections = state.sections.map((section) => {
+      section.count = state.bookmarks.filter(bookmark => bookmark.sectionId === section.id).length;
+      return section;
+    });
+
     const bookmarks = selectedSection !== null ?
-        state.bookmarks.filter(bookmark => bookmark.sectionId === selectedSection) :
-        state.bookmarks;
+      state.bookmarks.filter(bookmark => bookmark.sectionId === selectedSection) :
+      state.bookmarks;
+
     return {
       selectedSection,
       bookmarks,
-      sections: state.sections
+      sections,
+      totalBookmarks: state.bookmarks.length
     };
   },
   dispatch => ({
@@ -24,7 +32,7 @@ import * as bookmarksActions from '../actions/bookmarks';
     bookmarksActions: bindActionCreators(bookmarksActions, dispatch)
   })
 )
-export default class BookmarksComponent extends Component {
+export default class BookmarkApp extends Component {
 
   static propTypes = {
     sections: PropTypes.array.isRequired,
@@ -33,6 +41,7 @@ export default class BookmarksComponent extends Component {
       React.PropTypes.bool,
       React.PropTypes.number
     ]),
+    totalBookmarks: PropTypes.number.isRequired,
     sectionActions: PropTypes.object.isRequired,
     bookmarksActions: PropTypes.object.isRequired
   };
@@ -40,12 +49,13 @@ export default class BookmarksComponent extends Component {
   render() {
     const {
       bookmarks, sections, selectedSection,
-      sectionActions, bookmarksActions
+      sectionActions, bookmarksActions,
+      totalBookmarks
     } = this.props;
 
     return (
       <div>
-        <Sections sections={sections} selected={selectedSection} actions={sectionActions} />
+        <Sections sections={sections} selected={selectedSection} actions={sectionActions} totalBookmarks={totalBookmarks} />
         <Bookmarks bookmarks={bookmarks} />
       </div>
     );

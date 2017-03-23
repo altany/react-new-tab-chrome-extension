@@ -6,24 +6,25 @@ export default class Sections extends Component {
   static propTypes = {
     sections: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired,
-    selected: PropTypes.number
+    selected: PropTypes.number,
+    totalBookmarks: PropTypes.number
   };
 
   renderSections() {
-    const { sections, actions, selected = null } = this.props;
+    const { sections, actions, selected = null, totalBookmarks = 0 } = this.props;
     if (!sections.length) return null;
     return (
       <nav>
         <div
           className={selected === null ? style.selected : style.section}
           onClick={actions.viewAll}
-        >All</div>
+        >All ({totalBookmarks})</div>
         { sections.map((section, index) =>
           <div
             className={section.selected ? style.selected : style.section}
             key={index}
             onClick={actions.selectSection.bind(this, section.id)}
-          >{section.title}</div>
+          >{section.title} ({section.count}) </div>
         ) }
       </nav>
     );

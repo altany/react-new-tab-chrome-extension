@@ -8,7 +8,7 @@ describe('sections reducer', () => {
       sections(undefined, {})
     ).to.eql([{
       title: 'Work',
-      selected: true,
+      selected: false,
       id: 0
     }, {
       title: 'Fun',
