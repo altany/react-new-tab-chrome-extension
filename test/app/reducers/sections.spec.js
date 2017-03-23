@@ -120,4 +120,28 @@ describe('sections reducer', () => {
       id: 1
     }]);
   });
+
+  it('should handle VIEW_ALL_SECTIONS', () => {
+    expect(
+      sections([{
+        title: 'Work',
+        selected: true,
+        id: 0
+      }, {
+        title: 'One more section',
+        selected: false,
+        id: 1
+      }], {
+        type: types.VIEW_ALL_SECTIONS
+      })
+    ).to.eql([{
+      title: 'Work',
+      selected: false,
+      id: 0
+    }, {
+      title: 'One more section',
+      selected: false,
+      id: 1
+    }]);
+  });
 });

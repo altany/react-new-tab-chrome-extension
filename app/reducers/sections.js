@@ -33,10 +33,14 @@ const actionsMap = {
     );
   },
   [ActionTypes.SELECT_SECTION](state, action) {
-    return state.map(section => {
-      console.log(section, action.id)
-      return Object.assign({}, section, { selected: section.id === action.id })
-    });
+    return state.map(section =>
+      Object.assign({}, section, { selected: section.id === action.id })
+    );
+  },
+  [ActionTypes.VIEW_ALL_SECTIONS](state) {
+    return state.map(section =>
+      Object.assign({}, section, { selected: false })
+    );
   }
 };
 

@@ -31,4 +31,10 @@ describe('section actions', () => {
       id: 0
     });
   });
+
+  it('viewAll should create SELECT_SECTION action', () => {
+    expect(actions.viewAll()).to.eql({
+      type: types.VIEW_ALL_SECTIONS
+    });
+  });
 });
