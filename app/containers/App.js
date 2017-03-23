@@ -41,7 +41,7 @@ export default class App extends Component {
 
     return (
       <div>
-        <Sections sections={sections} select={sectionActions.selectSection} />
+        <Sections sections={sections} actions={sectionActions} />
         <Bookmarks bookmarks={bookmarks} />
         <div className={style.normal}>
           <Header addTodo={todoActions.addTodo} />

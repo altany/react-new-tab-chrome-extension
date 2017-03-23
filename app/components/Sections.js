@@ -5,22 +5,22 @@ export default class Sections extends Component {
 
   static propTypes = {
     sections: PropTypes.array.isRequired,
-    select: PropTypes.func.isRequired
+    actions: PropTypes.object.isRequired
   };
 
   constructor(props, context) {
     super(props, context);
   }
 
-  renderSections(sections, select) {
+  renderSections(sections, actions) {
     if (sections.length) {
       return (
         <nav>
           { sections.map((section, index) =>
             <div
-              className={section.selected ? 'selected' : ''}
+              className={section.selected ? style.selected : style.section}
               key={index}
-              onClick={select}
+              onClick={actions.selectSection.bind(this, section.id)}
             >{section.title}</div>
           ) }
         </nav>
@@ -29,10 +29,10 @@ export default class Sections extends Component {
   }
 
   render() {
-    const { sections, select } = this.props;
+    const { sections, actions } = this.props;
     return (
       <section className={style.sidebar}>
-        {this.renderSections(sections, select)}
+        {this.renderSections(sections, actions)}
       </section>
     );
   }
