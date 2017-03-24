@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Sections from '../components/Sections';
-import Bookmarks from '../components/Bookmarks.jsx';
+import Bookmarks from '../components/Bookmarks';
 import * as sectionActions from '../actions/sections';
 import * as bookmarksActions from '../actions/bookmarks';
 
@@ -44,13 +44,13 @@ export default class BookmarkApp extends Component {
     ]),
     totalBookmarks: PropTypes.number.isRequired,
     sectionActions: PropTypes.object.isRequired,
-    bookmarksActions: PropTypes.object.isRequired
+    //bookmarksActions: PropTypes.object.isRequired
   };
 
   render() {
     const {
       bookmarks, sections, selectedSection,
-      sectionActions, bookmarksActions,
+      sectionActions,
       totalBookmarks
     } = this.props;
 
