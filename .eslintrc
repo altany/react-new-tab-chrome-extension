@@ -18,7 +18,8 @@
     "comma-dangle": 0,
     "spaced-comment": 0,
     "global-require": 0,
-    "no-console": 0
+    "no-console": 0,
+    "jsx-quotes": ["error", "prefer-single"]
   },
   "plugins": [
     "react"

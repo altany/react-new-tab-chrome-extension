@@ -19,8 +19,8 @@ class InjectApp extends Component {
           Open TodoApp
         </button>
         <Dock
-          position="right"
-          dimMode="transparent"
+          position='right'
+          dimMode='transparent'
           defaultSize={0.4}
           isVisible={this.state.isVisible}
         >
@@ -30,7 +30,7 @@ class InjectApp extends Component {
               height: '100%',
             }}
             frameBorder={0}
-            allowTransparency="true"
+            allowTransparency='true'
             src={chrome.extension.getURL(`inject.html?protocol=${location.protocol}`)}
           />
         </Dock>

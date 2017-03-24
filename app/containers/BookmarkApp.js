@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Sections from '../components/Sections';
-import Bookmarks from '../components/Bookmarks';
+import Bookmarks from '../components/Bookmarks.jsx';
 import * as sectionActions from '../actions/sections';
 import * as bookmarksActions from '../actions/bookmarks';
 
@@ -11,10 +11,11 @@ import * as bookmarksActions from '../actions/bookmarks';
     let selectedSection = state.sections.filter(section => section.selected === true);
     selectedSection = selectedSection.length ? selectedSection[0].id : null;
 
-    const sections = state.sections.map((section) => {
-      section.count = state.bookmarks.filter(bookmark => bookmark.sectionId === section.id).length;
-      return section;
-    });
+    const sections = state.sections.map(section =>
+      Object.assign({}, section, {
+        count: state.bookmarks.filter(bookmark => bookmark.sectionId === section.id).length
+      })
+    );
 
     const bookmarks = selectedSection !== null ?
       state.bookmarks.filter(bookmark => bookmark.sectionId === selectedSection) :
@@ -55,7 +56,12 @@ export default class BookmarkApp extends Component {
 
     return (
       <div>
-        <Sections sections={sections} selected={selectedSection} actions={sectionActions} totalBookmarks={totalBookmarks} />
+        <Sections
+          sections={sections}
+          selected={selectedSection}
+          actions={sectionActions}
+          totalBookmarks={totalBookmarks}
+        />
         <Bookmarks bookmarks={bookmarks} />
       </div>
     );

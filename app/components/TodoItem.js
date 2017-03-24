@@ -60,7 +60,7 @@ export default class TodoItem extends Component {
         <div className={style.view}>
           <input
             className={style.toggle}
-            type="checkbox"
+            type='checkbox'
             checked={todo.completed}
             onChange={this.handleComplete}
           />

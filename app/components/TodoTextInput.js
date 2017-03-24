@@ -46,9 +46,9 @@ export default class TodoTextInput extends Component {
           [style.edit]: this.props.editing,
           [style.new]: this.props.newTodo
         })}
-        type="text"
+        type='text'
         placeholder={this.props.placeholder}
-        autoFocus="true"
+        autoFocus='true'
         value={this.state.text}
         onBlur={this.handleBlur}
         onChange={this.handleChange}

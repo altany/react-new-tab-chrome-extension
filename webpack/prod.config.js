@@ -35,11 +35,11 @@ module.exports = {
     })
   ],
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['', '.js', '.jsx']
   },
   module: {
     loaders: [{
-      test: /\.js$/,
+      test: /\.js|.jsx$/,
       loader: 'babel',
       exclude: /node_modules/,
       query: {

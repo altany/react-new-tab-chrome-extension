@@ -39,7 +39,7 @@ export default class MainSection extends Component {
       return (
         <input
           className={style.toggleAll}
-          type="checkbox"
+          type='checkbox'
           checked={completedCount === todos.length}
           onChange={actions.completeAll}
         />

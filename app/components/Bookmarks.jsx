@@ -18,7 +18,10 @@ export default class Bookmarks extends Component {
               href={bookmark.url}
               key={index}
               className={style.link}
-            >{bookmark.title}</a>
+            >
+              <img alt='favicon' src={`${bookmark.url}/favicon.ico`} />
+              {bookmark.title}
+            </a>
           )}
         </nav>
       );
