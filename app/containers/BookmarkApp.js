@@ -56,14 +56,14 @@ export default class BookmarkApp extends Component {
 
     return (
       <div>
-        <Sections
-          sections={sections}
-          selected={selectedSection}
-          actions={sectionActions}
-          totalBookmarks={totalBookmarks}
-        />
-        <Bookmarks bookmarks={bookmarks} />
-      </div>
+          <Sections
+            sections={sections}
+            selected={selectedSection}
+            actions={sectionActions}
+            totalBookmarks={totalBookmarks}
+          />
+          <Bookmarks bookmarks={bookmarks} />
+        </div>
     );
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import style from './Sections.css';
-import SectionItem from './SectionItem';
+import SectionItem from './../containers/SectionItem';
 
 export default class Sections extends Component {
 
@@ -21,7 +21,13 @@ export default class Sections extends Component {
           onClick={actions.viewAll}
         >All ({totalBookmarks})</div>
         { sections.map((section, index) =>
-          <SectionItem section={section} key={index} onItemClick={actions.selectSection} />
+          <SectionItem
+            section={section}
+            key={index}
+            onItemClick={actions.selectSection}
+            accepts={['bookmark']}
+            //onDrop={ actions.selectSection}
+          />
         ) }
       </nav>
     );

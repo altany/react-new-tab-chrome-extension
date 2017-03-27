@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react';
+import Bookmark from '../containers/Bookmark';
 import style from './Bookmarks.css';
 
 export default class Bookmarks extends Component {
 
   static propTypes = {
     bookmarks: PropTypes.array.isRequired
-  };
+};
 
   renderBookmarks() {
     const { bookmarks } = this.props;
@@ -14,14 +15,7 @@ export default class Bookmarks extends Component {
       return (
         <nav>
           { bookmarks.map((bookmark, index) =>
-            <a
-              href={bookmark.url}
-              key={index}
-              className={style.link}
-            >
-              <img alt='favicon' src={`${bookmark.url}/favicon.ico`} />
-              {bookmark.title}
-            </a>
+            <Bookmark key={index} bookmark={bookmark} />
           )}
         </nav>
       );
