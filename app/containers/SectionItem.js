@@ -40,11 +40,11 @@ export default class SectionItem extends Component {
   render() {
     const { section, accepts, canDrop, isOver, connectDropTarget } = this.props;
     const isActive = canDrop && isOver;
-    let backgroundColor = 'white';
+    let backgroundColor = '#f5f5f5';
     if (isActive) {
-      backgroundColor = 'darkgreen';
+      backgroundColor = '#edc2ee';
     } else if (canDrop) {
-      backgroundColor = 'darkkhaki';
+      backgroundColor = '#d5ccde';
     }
 
     return connectDropTarget(

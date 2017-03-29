@@ -16,10 +16,17 @@ export default class Sections extends Component {
     if (!sections.length) return null;
     return (
       <nav>
-        <div
+        <SectionItem
+          key={-1}
+          section={{
+            title:'All',
+            count: totalBookmarks,
+            selected: selected === null
+          }}
           className={selected === null ? style.selected : style.section}
-          onClick={actions.viewAll}
-        >All ({totalBookmarks})</div>
+          onItemClick={actions.viewAll}
+          accepts={['bookmark']}
+        />
         { sections.map((section, index) =>
           <SectionItem
             section={section}
