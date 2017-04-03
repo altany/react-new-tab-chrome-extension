@@ -4,7 +4,6 @@ import style from './../components/Sections.css';
 
 const SectionTarget = {
   drop(props, monitor) {
-    //props.onDrop(monitor.getItem());
     return {
       section: props.section
     };
@@ -20,7 +19,6 @@ const SectionTarget = {
 export default class SectionItem extends Component {
   static propTypes = {
     onItemClick: PropTypes.func.isRequired,
-    //onDrop: PropTypes.func.isRequired,
     section: PropTypes.object.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
     accepts: PropTypes.arrayOf(PropTypes.string).isRequired,
