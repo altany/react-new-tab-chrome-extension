@@ -10,6 +10,7 @@ export const CLEAR_COMPLETED = 'CLEAR_COMPLETED';
 export const ADD_BOOKMARK = 'ADD_BOOKMARK';
 export const DELETE_BOOKMARK = 'DELETE_BOOKMARK';
 export const EDIT_BOOKMARK = 'EDIT_BOOKMARK';
+export const EDIT_BOOKMARK_SECTION = 'EDIT_BOOKMARK_SECTION';
 
 /** Sections **/
 export const ADD_SECTION = 'ADD_SECTION';

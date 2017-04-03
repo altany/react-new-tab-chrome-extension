@@ -1,7 +1,8 @@
 .main {
-  margin-left: 400px;
+  margin-left: 300px;
 }
 
 .link {
-  display: block;
+  float: left;
+  clear: left;
 }

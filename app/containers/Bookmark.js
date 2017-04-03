@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { DragSource } from 'react-dnd';
+import {editBookmarkSection} from '../actions/bookmarks';
 import style from '../components/Bookmarks.css';
 
 const bookmarkSource = {
@@ -15,12 +18,20 @@ const bookmarkSource = {
 
     // ACTION FOR UPDATING SECTION CAN GO HERE!
     if (dropResult) {
+      props.editBookmarkSection(item.id, dropResult.section.id);
       console.log( // eslint-disable-line no-alert
         `Dropped ${item.title} (bookmarkId: ${item.id}, sectionId: ${item.sectionId}) into ${dropResult.section.title} (sectionId: ${dropResult.section.id})`
       );
     }
   }
 };
+
+@connect(
+  null,
+  dispatch => ({
+    editBookmarkSection: bindActionCreators(editBookmarkSection, dispatch)
+  })
+)
 
 @DragSource('bookmark', bookmarkSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),

@@ -13,11 +13,11 @@ export default class Bookmarks extends Component {
 
     if (bookmarks.length) {
       return (
-        <nav>
+        <div>
           { bookmarks.map((bookmark, index) =>
             <Bookmark key={index} bookmark={bookmark} />
           )}
-        </nav>
+        </div>
       );
     }
   }

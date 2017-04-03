@@ -28,8 +28,8 @@ export default class App extends Component {
     } = this.props;
 
     return (
-      <div>
-        <div className={style.normal}>
+      <div className={style.normal}>
+        <div>
           <Header addTodo={todoActions.addTodo} />
           <MainSection todos={todos} actions={todoActions} />
         </div>

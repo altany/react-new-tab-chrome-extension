@@ -11,3 +11,7 @@ export function deleteBookmark(id) {
 export function editBookmark(id, title, url, sectionId) {
   return { type: types.EDIT_BOOKMARK, id, title, url, sectionId };
 }
+
+export function editBookmarkSection(id, sectionId) {
+  return { type: types.EDIT_BOOKMARK_SECTION, id, sectionId };
+}
