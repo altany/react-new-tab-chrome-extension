@@ -49,14 +49,15 @@ export default class Bookmark extends Component {
   render() {
     const { bookmark, isDragging, connectDragSource  } = this.props;
     const opacity = isDragging ? 0.4 : 1;
-
+    const url = document.createElement('a'); // for the favicon
+    url.setAttribute('href', bookmark.url);
     return (
       connectDragSource(
         <a
           href={bookmark.url}
           className={style.link}
         >
-          <img alt='favicon' src={`${bookmark.url}/favicon.ico`} />
+          <img alt='favicon' src={`${url.protocol}//${url.host}/favicon.ico`} />
           {bookmark.title}
         </a>
       )
