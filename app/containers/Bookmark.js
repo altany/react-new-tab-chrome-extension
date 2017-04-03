@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { DragSource } from 'react-dnd';
+import Favicon from '../components/Favicon';
 import {editBookmarkSection} from '../actions/bookmarks';
 import style from '../components/Bookmarks.css';
 
@@ -49,15 +50,13 @@ export default class Bookmark extends Component {
   render() {
     const { bookmark, isDragging, connectDragSource  } = this.props;
     const opacity = isDragging ? 0.4 : 1;
-    const url = document.createElement('a'); // for the favicon
-    url.setAttribute('href', bookmark.url);
     return (
       connectDragSource(
         <a
           href={bookmark.url}
           className={style.link}
         >
-          <img alt='favicon' src={`${url.protocol}//${url.host}/favicon.ico`} />
+          <Favicon url={bookmark.url} />
           {bookmark.title}
         </a>
       )
