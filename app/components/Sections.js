@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import style from './Sections.css';
-import SectionItem from './../containers/SectionItem';
+import SectionItem from '../containers/SectionItem';
+import AddNewSection from '../containers/AddNewSection';
 
 export default class Sections extends Component {
 
@@ -42,9 +43,10 @@ export default class Sections extends Component {
 
   render() {
     return (
-      <section className={style.sidebar}>
+      <aside className={style.sidebar}>
         {this.renderSections()}
-      </section>
+        <AddNewSection />
+      </aside>
     );
   }
 }

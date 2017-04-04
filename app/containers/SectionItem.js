@@ -31,7 +31,8 @@ export default class SectionItem extends Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  onClick() {
+  onClick(e) {
+    e.preventDefault();
     this.props.onItemClick(this.props.section.id);
   }
 
@@ -51,7 +52,9 @@ export default class SectionItem extends Component {
         className={section.selected ? style.selected : style.section}
         onClick={this.onClick}
       >
-        {section.title} ({section.count})
+        <a href="#">
+          {section.title} ({section.count})
+        </a>
       </div>
     );
   }
