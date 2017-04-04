@@ -60,7 +60,10 @@ export default class AddNewSection extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.addSection(this.state.section);
-    this.setState({open: false})
+    this.setState({
+      open: false,
+      section: ''
+    })
   }
 
   onOpen(e) {
