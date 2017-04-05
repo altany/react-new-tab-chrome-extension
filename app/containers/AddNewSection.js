@@ -28,6 +28,11 @@ export default class AddNewSection extends Component {
       section: ''
     };
   }
+  componentDidUpdate() {
+    if (this.sectionInput) {
+      this.sectionInput.focus();
+    }
+  }
 
   renderAddNew() {
     if (this.state.open) {
@@ -39,6 +44,7 @@ export default class AddNewSection extends Component {
             value={this.state.section}
             onChange={this.handleChange}
             placeholder='New section name'
+            ref={(c)=>this.sectionInput=c}
           />
           <input type='submit' value='Add' onClick={addSection} />
           <input type='button' value='Cancel' onClick={this.onClose} />
@@ -59,7 +65,9 @@ export default class AddNewSection extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.addSection(this.state.section);
+    if (this.state.section.length) {
+      this.props.addSection(this.state.section);
+    }
     this.setState({
       open: false,
       section: ''

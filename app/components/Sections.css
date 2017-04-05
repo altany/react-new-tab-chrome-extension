@@ -9,15 +9,22 @@
 
 .section {
   cursor: pointer;
+  margin: 5px 10px;
 }
 
 .selected {
   font-weight: bold;
   cursor: pointer;
+  margin: 5px 10px;
 }
 
 .addNew {
   font-weight: bold;
   position: absolute;
   bottom: 0;
+}
+
+.deleteSection{
+  float: right;
+  clear: right;
 }

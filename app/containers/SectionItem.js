@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { DropTarget } from 'react-dnd';
+import {deleteSection} from '../actions/sections';
 import style from './../components/Sections.css';
 
 const SectionTarget = {
@@ -16,6 +19,13 @@ const SectionTarget = {
   canDrop: monitor.canDrop()
 }))
 
+@connect(
+  null,
+  dispatch => ({
+    deleteSection: bindActionCreators(deleteSection, dispatch)
+  })
+)
+
 export default class SectionItem extends Component {
   static propTypes = {
     onItemClick: PropTypes.func.isRequired,
@@ -23,17 +33,22 @@ export default class SectionItem extends Component {
     connectDropTarget: PropTypes.func.isRequired,
     accepts: PropTypes.arrayOf(PropTypes.string).isRequired,
     isOver: PropTypes.bool.isRequired,
-    canDrop: PropTypes.bool.isRequired
+    canDrop: PropTypes.bool.isRequired,
+    deleteSection: PropTypes.func.isRequired
   };
 
   constructor() {
     super();
     this.onClick = this.onClick.bind(this);
+    this.onDelete = this.onDelete.bind(this);
   }
 
   onClick(e) {
     e.preventDefault();
     this.props.onItemClick(this.props.section.id);
+  }
+  onDelete() {
+    this.props.deleteSection(this.props.section.id);
   }
 
   render() {
@@ -55,6 +70,7 @@ export default class SectionItem extends Component {
         <a href="#">
           {section.title} ({section.count})
         </a>
+        <span className={style.deleteSection} onClick={this.onDelete}>x</span>
       </div>
     );
   }
