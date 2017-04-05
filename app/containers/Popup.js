@@ -10,7 +10,8 @@ export default class Popup extends Component {
   static propTypes = {
     open: PropTypes.bool,
     mode: PropTypes.oneOf(['section', 'bookmark']),
-    id: PropTypes.number
+    id: PropTypes.number,
+    position: PropTypes.object
   };
 
   constructor(props) {
@@ -20,6 +21,13 @@ export default class Popup extends Component {
   render() {
     console.log(this.props);
     if (!this.props.open) return null;
-    return <div>test</div>;
+    return <div style={{
+      display: 'block',
+      width: 400,
+      height: 200,
+      backgroundColor: 'pink',
+      position: 'absolute',
+      right: 0
+    }}>{this.props.mode} id:{this.props.id} </div>;
   }
 }
