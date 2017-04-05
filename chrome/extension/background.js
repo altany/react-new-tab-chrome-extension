@@ -1,5 +1,4 @@
 const bluebird = require('bluebird');
-
 global.Promise = bluebird;
 
 function promisifier(method) {
@@ -25,7 +24,7 @@ promisifyAll(chrome, [
   'contextMenus'
 ]);
 promisifyAll(chrome.storage, [
-  'local',
+  'local'
 ]);
 
 require('./background/contextMenus');

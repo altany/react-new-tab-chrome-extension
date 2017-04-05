@@ -23,4 +23,16 @@ chrome.storage.local.get('state', (obj) => {
       document.querySelector('#popupRoot')
     );
   }
+
+  window.addEventListener('load', function(e) {
+    let links = document.querySelectorAll('aside nav div, main div a');
+    Array.from(links).forEach(link => {
+      link.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+      }, false);
+
+    });
+  });
+
 });

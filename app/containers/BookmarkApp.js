@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Sections from '../components/Sections';
 import Bookmarks from '../components/Bookmarks';
+import Popup from '../containers/Popup';
 import * as sectionActions from '../actions/sections';
 import * as bookmarksActions from '../actions/bookmarks';
 
@@ -63,6 +64,7 @@ export default class BookmarkApp extends Component {
             totalBookmarks={totalBookmarks}
           />
           <Bookmarks bookmarks={bookmarks} />
+          <Popup />
         </div>
     );
   }

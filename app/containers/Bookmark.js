@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { DragSource } from 'react-dnd';
 import Favicon from '../components/Favicon';
 import {editBookmarkSection} from '../actions/bookmarks';
+import {openPopup} from '../actions/popup';
 import style from '../components/Bookmarks.css';
 
 const bookmarkSource = {
@@ -30,7 +31,8 @@ const bookmarkSource = {
 @connect(
   null,
   dispatch => ({
-    editBookmarkSection: bindActionCreators(editBookmarkSection, dispatch)
+    editBookmarkSection: bindActionCreators(editBookmarkSection, dispatch),
+    openPopup: bindActionCreators(openPopup, dispatch)
   })
 )
 
@@ -44,8 +46,20 @@ export default class Bookmark extends Component {
   static propTypes = {
     bookmark: PropTypes.object.isRequired,
     connectDragSource: PropTypes.func.isRequired,
-    isDragging: PropTypes.bool.isRequired
+    isDragging: PropTypes.bool.isRequired,
+    openPopup: PropTypes.func.isRequired
   };
+
+  constructor() {
+    super();
+    this.onMenu = this.onMenu.bind(this);
+  }
+  onMenu(e) {
+    e.preventDefault();
+    if (typeof this.props.bookmark.id !== 'undefined') {
+      this.props.openPopup(this.props.bookmark.id, 'bookmark');
+    }
+  }
 
   render() {
     const { bookmark, isDragging, connectDragSource  } = this.props;
@@ -55,6 +69,7 @@ export default class Bookmark extends Component {
         <a
           href={bookmark.url}
           className={style.link}
+          onContextMenu={this.onMenu}
         >
           <Favicon url={bookmark.url} />
           {bookmark.title}
