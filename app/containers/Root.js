@@ -4,6 +4,7 @@ import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import App from './App';
 import BookmarkApp from './BookmarkApp';
+import style from './App.css';
 
 export default class Root extends Component {
 
@@ -15,7 +16,7 @@ export default class Root extends Component {
     const { store } = this.props;
     return (
       <Provider store={store}>
-        <div>
+        <div className={style.container}>
           <App />
           <DragDropContextProvider backend={HTML5Backend}>
             <BookmarkApp />

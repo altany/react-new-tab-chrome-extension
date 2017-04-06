@@ -34,7 +34,6 @@ export default class Sections extends Component {
             key={index}
             onItemClick={actions.selectSection}
             accepts={['bookmark']}
-            //onDrop={ actions.selectSection}
           />
         ) }
       </nav>

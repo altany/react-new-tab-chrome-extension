@@ -4,8 +4,7 @@
   // position: relative;
   width: 400px;
   float: right;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
-              0 25px 50px 0 rgba(0, 0, 0, 0.1);
+
 }
 
 .normal input::-webkit-input-placeholder {
@@ -44,11 +43,42 @@
   display: block;
   width: 400px;
   height: 200px;
-  background-color: pink;
+  background-color: white;
   position: absolute;
   right: 0;
+  padding: 20px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
+  0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
+.popup button {
+  display: inline-block;
+  padding: 10px 18px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #34046E;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #ddd;
+}
+
+.popup button:hover {background-color: #4a04b9
+}
+
+.popup button:active {
+  background-color: #4a04b9;
+  box-shadow: 0 5px #ddd;
+  transform: translateY(4px);
+}
+.container {
+  min-height: 100%;
+  width: 100%;
+  position: absolute;
+}
 a {
   text-decoration: none;
   color: darkslategray;

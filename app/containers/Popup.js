@@ -1,6 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import PopupWrapper from '../components/PopupWrapper';
+import {editBookmark} from '../actions/bookmarks';
+import {editSection} from '../actions/sections';
+import {closePopup} from '../actions/popup';
 import style from './App.css';
 
 @connect(
@@ -21,7 +25,12 @@ import style from './App.css';
       mode: state.popup.mode,
       selected
     };
-  }
+  },
+  dispatch => ({
+    editBookmark: bindActionCreators(editBookmark, dispatch),
+    editSection: bindActionCreators(editSection, dispatch),
+    closePopup: bindActionCreators(closePopup, dispatch)
+  })
 )
 
 export default class Popup extends Component {
@@ -30,38 +39,47 @@ export default class Popup extends Component {
     selected: PropTypes.oneOfType([
       React.PropTypes.bool,
       React.PropTypes.object
-    ])
+    ]),
+    editBookmark: PropTypes.func.isRequired,
+    editSection: PropTypes.func.isRequired,
+    closePopup: PropTypes.func.isRequired
   };
 
   constructor(props) {
     super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  renderSection() {
-    return(
-      <div className={style.popup}>
-        {this.props.mode} id:{this.props.selected.id}
-      </div>
-    );
-  }
-
-  renderBookmark() {
-    return(
-      <div className={style.popup}>
-        {this.props.mode} id:{this.props.selected.id}
-      </div>
-    );
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.closePopup();
   }
 
   render() {
-    console.log(this.props)
-    if (!this.props.selected) return null;
-    if (this.props.mode==='section') {
-      return this.renderSection()
-    }
-    else if (this.props.mode==='bookmark') {
-      return this.renderBookmark()
-    }
-    return null;
+    console.log(this.props);
+    const { mode, selected, closePopup } = this.props;
+    if (!selected) return null;
+    return (
+      <PopupWrapper>
+        <form onSubmit={this.handleSubmit}>
+          {mode==='section' &&
+            <div>
+              <h3>Edit Section '{selected.title}'</h3>
+              {mode} id:{selected.id}
+            </div>
+          }
+          {mode==='bookmark' &&
+            <div>
+              <h3>Edit Bookmark '{selected.title}'</h3>
+              {mode} id:{selected.id}
+            </div>
+          }
+          <div>
+            <button type='submit'>Save</button>
+            <button onClick={closePopup}>Cancel</button>
+          </div>
+        </form>
+      </PopupWrapper>
+    );
   }
 }

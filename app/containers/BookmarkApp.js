@@ -7,6 +7,7 @@ import Popup from '../containers/Popup';
 import * as sectionActions from '../actions/sections';
 import * as bookmarksActions from '../actions/bookmarks';
 
+
 @connect(
   (state) => {
     let selectedSection = state.sections.filter(section => section.selected === true);
@@ -44,8 +45,7 @@ export default class BookmarkApp extends Component {
       React.PropTypes.number
     ]),
     totalBookmarks: PropTypes.number.isRequired,
-    sectionActions: PropTypes.object.isRequired,
-    //bookmarksActions: PropTypes.object.isRequired
+    sectionActions: PropTypes.object.isRequired
   };
 
   render() {
