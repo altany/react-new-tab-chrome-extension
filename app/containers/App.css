@@ -40,6 +40,15 @@
   text-rendering: optimizeLegibility;
 }
 
+.popup {
+  display: block;
+  width: 400px;
+  height: 200px;
+  background-color: pink;
+  position: absolute;
+  right: 0;
+}
+
 a {
   text-decoration: none;
   color: darkslategray;
