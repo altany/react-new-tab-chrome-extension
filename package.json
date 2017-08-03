@@ -78,6 +78,7 @@
     "react-image-fallback": "^4.0.1",
     "react-redux": "^4.3.0",
     "redux": "^3.2.1",
-    "redux-thunk": "^2.0.1"
+    "redux-thunk": "^2.0.1",
+    "styled-components": "^2.1.1"
   }
 }

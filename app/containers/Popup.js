@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import PopupWrapper from '../components/PopupWrapper';
 import Input from '../components/Input';
 import { editBookmark } from '../actions/bookmarks';
 import { editSection } from '../actions/sections';
 import { closePopup } from '../actions/popup';
-//import style from './App.css';
 
 @connect(
   (state) => {
@@ -108,11 +108,26 @@ export default class Popup extends Component {
             </div>
           }
           <div>
-            <button type='submit' onClick={this.handleSubmit}>Save {mode}</button>
-            <button onClick={closePopup}>Cancel</button>
+            <StyledButton type='submit' onClick={this.handleSubmit}>Save {mode}</StyledButton>
+            <StyledButton onClick={closePopup}>Cancel</StyledButton>
           </div>
         </form>
       </PopupWrapper>
     );
   }
 }
+
+const StyledButton = styled.button`
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #b092ea;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #ddd;
+`;

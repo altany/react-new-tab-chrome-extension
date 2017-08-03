@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { DropTarget } from 'react-dnd';
+import styled from 'styled-components';
 import {deleteSection} from '../actions/sections';
 import {openPopup} from '../actions/popup';
-import style from './../components/Sections.css';
 
 const SectionTarget = {
   drop(props, monitor) {
@@ -32,10 +32,10 @@ export default class SectionItem extends Component {
   static propTypes = {
     onItemClick: PropTypes.func.isRequired,
     section: PropTypes.object.isRequired,
-    connectDropTarget: PropTypes.func.isRequired,
+    connectDropTarget: PropTypes.func,
     accepts: PropTypes.arrayOf(PropTypes.string).isRequired,
-    isOver: PropTypes.bool.isRequired,
-    canDrop: PropTypes.bool.isRequired,
+    isOver: PropTypes.bool,
+    canDrop: PropTypes.bool,
     deleteSection: PropTypes.func.isRequired,
     openPopup: PropTypes.func.isRequired
   };
@@ -52,6 +52,7 @@ export default class SectionItem extends Component {
     this.props.onItemClick(this.props.section.id);
   }
   onMenu(e) {
+    //console.log(this.node.getBoundingClientRect());
     e.preventDefault();
     if (typeof this.props.section.id !== 'undefined') {
       this.props.openPopup(this.props.section.id, 'section');
@@ -63,27 +64,40 @@ export default class SectionItem extends Component {
 
   render() {
     const { section, accepts, canDrop, isOver, connectDropTarget } = this.props;
-    const isActive = canDrop && isOver;
-    let backgroundColor = '#f5f5f5';
-    if (isActive) {
-      backgroundColor = '#edc2ee';
-    } else if (canDrop) {
-      backgroundColor = '#d5ccde';
-    }
 
     return connectDropTarget(
-      <div
-        style={{ backgroundColor }}
-        className={section.selected ? style.selected : style.section}
-        onClick={this.onClick}
-        onContextMenu={this.onMenu}
-        id={section.id}
-      >
-        <a href="#">
-          {section.title} ({section.count})
-        </a>
-        <span className={style.deleteSection} onClick={this.onDelete}>x</span>
+      <div>
+        <StyledSectionItem
+          isActive={canDrop && isOver}
+          canDrop={canDrop}
+          isSelected={section.selected}
+          onClick={this.onClick}
+          onContextMenu={this.onMenu}
+          id={section.id}
+          ref={node => this.node = node}
+        >
+          <a href="#">
+            {section.title} ({section.count})
+          </a>
+          <StyledDeleteButton onClick={this.onDelete}>x</StyledDeleteButton>
+        </StyledSectionItem>
       </div>
     );
   }
 }
+
+const StyledSectionItem = styled.div`
+  cursor: pointer;
+  padding: 5px 10px;
+  background-color: ${props => {
+    if (props.isActive) return '#edc2ee';
+    else if (props.canDrop) return '#d5ccde';
+    else return '#f5f5f5';
+  }};
+  font-weight: ${props => props.isSelected?'bold':'normal'};
+`;
+
+const StyledDeleteButton = styled.span`
+  float: right;
+  clear: right;
+`;

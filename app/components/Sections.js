@@ -13,7 +13,7 @@ export default class Sections extends Component {
   };
 
   renderSections() {
-    const { sections, actions, selected = null, totalBookmarks = 0 } = this.props;
+    const { sections, actions, selected = null, totalBookmarks } = this.props;
     if (!sections.length) return null;
     return (
       <nav>

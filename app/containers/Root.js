@@ -17,7 +17,7 @@ export default class Root extends Component {
     return (
       <Provider store={store}>
         <div className={style.container}>
-          <App />
+          {/*<App />*/}
           <DragDropContextProvider backend={HTML5Backend}>
             <BookmarkApp />
           </DragDropContextProvider>

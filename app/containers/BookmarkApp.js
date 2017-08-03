@@ -48,6 +48,13 @@ export default class BookmarkApp extends Component {
     sectionActions: PropTypes.object.isRequired
   };
 
+  static defaultProps ={
+    sections: [],
+    bookmarks: [],
+    selectedSection: false,
+    totalBookmarks: 0
+  };
+
   render() {
     const {
       bookmarks, sections, selectedSection,
