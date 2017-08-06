@@ -51,7 +51,6 @@ export default class Popup extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.state = {};
     if (props.selected) {
-      console.log(props.selected);
       this.state.title = props.selected.title;
       if (props.mode === 'bookmark') {
         this.state.url = props.selected.url;
@@ -60,11 +59,17 @@ export default class Popup extends Component {
 
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.selected !== nextProps.selected) {
+        this.setState({title: nextProps.selected.title});
+        if (nextProps.mode === 'bookmark') this.setState({url: nextProps.selected.url});
+    }
+  }
+
   handleInputChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log(this.state);
   }
   
   handleSubmit(e) {
