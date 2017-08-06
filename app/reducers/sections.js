@@ -8,6 +8,14 @@ const initialState = [{
   title: 'Fun',
   id: 1,
   selected: false
+}, {
+  title: 'Shopping',
+  id: 2,
+  selected: false
+}, {
+  title: 'Social',
+  id: 3,
+  selected: false
 }];
 
 const actionsMap = {

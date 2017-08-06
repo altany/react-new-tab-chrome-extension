@@ -1,18 +1,5 @@
 import * as ActionTypes from '../constants/ActionTypes';
 
-const initialState = [{
-  title: 'Demo Bookmark to Tany4',
-  url: 'http://tany4.com',
-  sectionId: null,
-  id: 0
-},
-{
-  title: 'Demo Work Bookmark',
-  url: 'http://tany4.com',
-  sectionId: 0,
-  id: 1
-}];
-
 const actionsMap = {
   [ActionTypes.ADD_BOOKMARK](state, action) {
     return [{
@@ -49,7 +36,7 @@ const actionsMap = {
 }
 };
 
-export default function bookmarks(state = initialState, action) {
+export default function bookmarks(state = [], action) {
   const reduceFn = actionsMap[action.type];
   if (!reduceFn) return state;
   return reduceFn(state, action);
