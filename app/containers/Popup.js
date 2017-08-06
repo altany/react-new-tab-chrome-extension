@@ -74,7 +74,15 @@ export default class Popup extends Component {
   
   handleSubmit(e) {
     e.preventDefault();
-    this.props.closePopup();
+    const { id } = this.props.selected;
+    const { title, url } = this.state;
+    if (this.props.mode === 'bookmark') {
+      this.props.editBookmark(id, title, url);
+    }
+    else if (this.props.mode === 'section') {
+        this.props.editSection(id, title);
+    }
+
   }
 
   render() {
@@ -87,10 +95,10 @@ export default class Popup extends Component {
           { mode === 'section' &&
             <div>
               <h3>Edit Section</h3>
-              <Input
+              <StyledInput
                 name='title'
                 placeholder='Title'
-                value={this.state.title}
+                value={this.state.title || 'fail'}
                 onChange={this.handleInputChange}
               />
             </div>
@@ -98,22 +106,22 @@ export default class Popup extends Component {
           {mode === 'bookmark' &&
             <div>
               <h3>Edit Bookmark</h3>
-              <Input
+              <StyledInput
                 name='title'
                 placeholder='Title'
-                value={this.state.title}
+                value={this.state.title || 'fail'}
                 onChange={this.handleInputChange}
               />
-              <Input
+              <StyledInput
                 name='url'
                 placeholder='url'
-                value={this.state.url}
+                value={this.state.url || 'fail'}
                 onChange={this.handleInputChange}
               />
             </div>
           }
           <div>
-            <StyledButton type='submit' onClick={this.handleSubmit}>Save {mode}</StyledButton>
+            <StyledButton type='submit'>Save {mode}</StyledButton>
             <StyledButton onClick={closePopup}>Cancel</StyledButton>
           </div>
         </form>
@@ -121,6 +129,13 @@ export default class Popup extends Component {
     );
   }
 }
+
+const StyledInput = styled.input.attrs({
+    type: 'text',
+})`
+  border-radius: 6px;
+  display: block;
+`;
 
 const StyledButton = styled.button`
   display: inline-block;
