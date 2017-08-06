@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Img from "react-image-fallback";
-import style from '../components/Bookmarks.css';
-
+import styled from 'styled-components';
 export default class Favicon extends Component {
 
   static propTypes = {
@@ -13,7 +12,7 @@ export default class Favicon extends Component {
     url.setAttribute('href', this.props.url);
 
     return (
-      <Img className={style.favicon}
+      <StyledImg
         alt='ico'
         src={`${url.protocol}//${url.host}/favicon.ico`}
         fallbackImage={'img/icon-16.png'}
@@ -21,3 +20,8 @@ export default class Favicon extends Component {
     );
   }
 }
+
+const StyledImg = styled(Img)`
+  width: 16px;
+  height: 16px;
+`;

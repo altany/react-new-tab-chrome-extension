@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import style from './Sections.css';
+import styled from 'styled-components';
 import SectionItem from '../containers/SectionItem';
 import AddNewSection from '../containers/AddNewSection';
 
@@ -17,14 +17,14 @@ export default class Sections extends Component {
     if (!sections.length) return null;
     return (
       <nav>
-        <SectionItem
+        <StyledSectionItem
           key={-1}
           section={{
             title:'All',
             count: totalBookmarks,
             selected: selected === null
           }}
-          className={selected === null ? style.selected : style.section}
+          selected
           onItemClick={actions.viewAll}
           accepts={['bookmark']}
         />
@@ -42,10 +42,24 @@ export default class Sections extends Component {
 
   render() {
     return (
-      <aside className={style.sidebar}>
+      <StyledSidebar>
         {this.renderSections()}
         <AddNewSection />
-      </aside>
+      </StyledSidebar>
     );
   }
 }
+
+const StyledSectionItem = styled(SectionItem)`
+  cursor: pointer;
+  margin: 5px 10px;
+  font-weight: ${props => props.selected ? 'bold' : 'normal'};
+`;
+
+const StyledSidebar = styled.aside`
+  position: relative;
+  min-width: 300px;
+  position: fixed;
+  height: 100%;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+`;

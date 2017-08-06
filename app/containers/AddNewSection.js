@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import {addSection} from '../actions/sections';
-import style from './../components/Sections.css';
 
 
 @connect(
@@ -84,9 +84,15 @@ export default class AddNewSection extends Component {
 
   render() {
     return (
-      <div className={style.addNew}>
+      <StyledAddSection>
         {this.renderAddNew()}
-      </div>
+      </StyledAddSection>
     );
   }
 }
+
+const StyledAddSection = styled.div`
+  font-weight: bold;
+  position: absolute;
+  bottom: 0;
+`;

@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { Provider } from 'react-redux';
 import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+import styled from 'styled-components';
 import App from './App';
 import BookmarkApp from './BookmarkApp';
-import style from './App.css';
 
 export default class Root extends Component {
 
@@ -16,13 +16,19 @@ export default class Root extends Component {
     const { store } = this.props;
     return (
       <Provider store={store}>
-        <div className={style.container}>
+        <StyledContainer>
           {/*<App />*/}
           <DragDropContextProvider backend={HTML5Backend}>
             <BookmarkApp />
           </DragDropContextProvider>
-        </div>
+        </StyledContainer>
       </Provider>
     );
   }
 }
+
+const StyledContainer = styled.div`
+  min-height: 100%;
+  width: 100%;
+  position: absolute;
+`;

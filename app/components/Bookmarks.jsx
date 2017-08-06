@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import styled from 'styled-components';
 import Bookmark from '../containers/Bookmark';
-import style from './Bookmarks.css';
 
 export default class Bookmarks extends Component {
 
@@ -24,9 +24,13 @@ export default class Bookmarks extends Component {
 
   render() {
     return (
-      <main className={style.main}>
+      <StyledBookmark>
         {this.renderBookmarks()}
-      </main>
+      </StyledBookmark>
     );
   }
 }
+
+const StyledBookmark = styled.main`
+  margin-left: 300px;
+`;

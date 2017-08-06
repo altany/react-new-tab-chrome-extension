@@ -2,10 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { DragSource } from 'react-dnd';
+import styled from 'styled-components';
 import Favicon from '../components/Favicon';
 import {editBookmarkSection} from '../actions/bookmarks';
 import {openPopup} from '../actions/popup';
-import style from '../components/Bookmarks.css';
 
 const bookmarkSource = {
   beginDrag(props) {
@@ -63,18 +63,23 @@ export default class Bookmark extends Component {
 
   render() {
     const { bookmark, isDragging, connectDragSource  } = this.props;
-    const opacity = isDragging ? 0.4 : 1;
     return (
       connectDragSource(
-        <a
-          href={bookmark.url}
-          className={style.link}
-          onContextMenu={this.onMenu}
-        >
-          <Favicon url={bookmark.url} />
-          {bookmark.title}
-        </a>
+        <div>
+          <StyledBookmarkLink
+              opacity = {isDragging ? 0.4 : 1}
+              href={bookmark.url}
+              onContextMenu={this.onMenu}
+          >
+            <Favicon url={bookmark.url} />
+              {bookmark.title}
+          </StyledBookmarkLink>
+        </div>
       )
     );
   }
 }
+
+const StyledBookmarkLink = styled.a`
+  opacity: ${props => props.opacity};
+`;
