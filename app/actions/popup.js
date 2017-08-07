@@ -5,5 +5,5 @@ export function openPopup(id, mode) {
 }
 
 export function closePopup() {
-  return { type: types.CLOSE_POPUP};
+  return { type: types.CLOSE_POPUP };
 }

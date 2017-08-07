@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import PopupWrapper from '../components/PopupWrapper';
-import Input from '../components/Input';
 import { editBookmark } from '../actions/bookmarks';
 import { editSection } from '../actions/sections';
 import { closePopup } from '../actions/popup';
@@ -56,13 +55,12 @@ export default class Popup extends Component {
         this.state.url = props.selected.url;
       }
     }
-
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.selected !== nextProps.selected) {
-        this.setState({title: nextProps.selected.title});
-        if (nextProps.mode === 'bookmark') this.setState({url: nextProps.selected.url});
+      this.setState({ title: nextProps.selected.title });
+      if (nextProps.mode === 'bookmark') this.setState({ url: nextProps.selected.url });
     }
   }
 
@@ -71,18 +69,17 @@ export default class Popup extends Component {
       [e.target.name]: e.target.value
     });
   }
-  
+
   handleSubmit(e) {
     e.preventDefault();
     const { id } = this.props.selected;
     const { title, url } = this.state;
     if (this.props.mode === 'bookmark') {
       this.props.editBookmark(id, title, url);
+    } else if (this.props.mode === 'section') {
+      this.props.editSection(id, title);
     }
-    else if (this.props.mode === 'section') {
-        this.props.editSection(id, title);
-    }
-
+    this.props.closePopup();
   }
 
   render() {
@@ -122,7 +119,7 @@ export default class Popup extends Component {
           }
           <div>
             <StyledButton type='submit'>Save {mode}</StyledButton>
-            <StyledButton onClick={closePopup}>Cancel</StyledButton>
+            <StyledButton onClick={this.props.closePopup}>Cancel</StyledButton>
           </div>
         </form>
       </PopupWrapper>
@@ -131,7 +128,7 @@ export default class Popup extends Component {
 }
 
 const StyledInput = styled.input.attrs({
-    type: 'text',
+  type: 'text',
 })`
   border-radius: 6px;
   display: block;
