@@ -1,7 +1,7 @@
 import * as types from '../constants/ActionTypes';
 
-export function openPopup(id, mode) {
-  return { type: types.OPEN_POPUP, id, mode };
+export function openPopup(id, mode, position) {
+  return { type: types.OPEN_POPUP, id, mode, position };
 }
 
 export function closePopup() {

@@ -71,8 +71,8 @@ export default class Bookmark extends Component {
               href={bookmark.url}
               onContextMenu={this.onMenu}
           >
-            <Favicon url={bookmark.url} />
-              {bookmark.title}
+            <StyledFavicon url={bookmark.url} />
+            <StyledTitle>{bookmark.title}</StyledTitle>
           </StyledBookmarkLink>
         </div>
       )
@@ -82,4 +82,15 @@ export default class Bookmark extends Component {
 
 const StyledBookmarkLink = styled.a`
   opacity: ${props => props.opacity};
+`;
+
+const StyledFavicon = styled(Favicon)`
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+`;
+
+const StyledTitle = styled.span`
+  display: inline-block;
+  vertical-align: middle;
 `;

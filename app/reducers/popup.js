@@ -9,7 +9,8 @@ const actionsMap = {
     return {
       open: true,
       mode: action.mode,
-      id: action.id
+      id: action.id,
+      position: action.position
     };
   },
   [ActionTypes.CLOSE_POPUP](state) {

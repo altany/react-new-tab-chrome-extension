@@ -52,7 +52,7 @@ export default class SectionItem extends Component {
     this.props.onItemClick(this.props.section.id);
   }
   onMenu(e) {
-    //console.log(this.node.getBoundingClientRect());
+    console.log(this.node.getBoundingClientRect());
     e.preventDefault();
     if (typeof this.props.section.id !== 'undefined') {
       this.props.openPopup(this.props.section.id, 'section');
@@ -66,7 +66,7 @@ export default class SectionItem extends Component {
     const { section, accepts, canDrop, isOver, connectDropTarget } = this.props;
 
     return connectDropTarget(
-      <div>
+      <div ref={node => this.node = node}>
         <StyledSectionItem
           isActive={canDrop && isOver}
           canDrop={canDrop}
@@ -74,7 +74,6 @@ export default class SectionItem extends Component {
           onClick={this.onClick}
           onContextMenu={this.onMenu}
           id={section.id}
-          ref={node => this.node = node}
         >
           <a href="#">
             {section.title} ({section.count})

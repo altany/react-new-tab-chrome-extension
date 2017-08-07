@@ -83,11 +83,10 @@ export default class Popup extends Component {
   }
 
   render() {
-    const { mode, selected } = this.props;
+    const { mode, position, selected } = this.props;
     if (!selected) return null;
     return (
-      <PopupWrapper>
-        {selected.id}
+      <StyledPopupWrapper position={position}>
         <form onSubmit={this.handleSubmit}>
           { mode === 'section' &&
             <div>
@@ -122,15 +121,21 @@ export default class Popup extends Component {
             <StyledButton onClick={this.props.closePopup}>Cancel</StyledButton>
           </div>
         </form>
-      </PopupWrapper>
+      </StyledPopupWrapper>
     );
   }
 }
 
+const StyledPopupWrapper = styled(PopupWrapper)`
+  border-radius: 5px;
+`;
+
 const StyledInput = styled.input.attrs({
   type: 'text',
 })`
-  border-radius: 6px;
+  border-radius: 4px;
+  width: 100%;
+  padding: 5px;
   display: block;
 `;
 

@@ -3,10 +3,13 @@ import styled from 'styled-components';
 
 export default class PopupWrapper extends Component {
 
+  static propTypes = {
+    className: PropTypes.string
+  };
 
   render() {
     return (
-      <StyledPopup>
+      <StyledPopup className={this.props.className}>
         <div>{this.props.children}</div>
       </StyledPopup>
     );

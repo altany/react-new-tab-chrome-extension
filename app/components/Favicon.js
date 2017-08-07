@@ -4,7 +4,8 @@ import styled from 'styled-components';
 export default class Favicon extends Component {
 
   static propTypes = {
-    url: PropTypes.string.isRequired
+    url: PropTypes.string.isRequired,
+    className: PropTypes.string
   };
 
   render () {
@@ -16,6 +17,7 @@ export default class Favicon extends Component {
         alt='ico'
         src={`${url.protocol}//${url.host}/favicon.ico`}
         fallbackImage={'img/icon-16.png'}
+        className={this.props.className}
       />
     );
   }
