@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { DropTarget } from 'react-dnd';
 import styled from 'styled-components';
-import {deleteSection} from '../actions/sections';
 import {openPopup} from '../actions/popup';
 
 const SectionTarget = {
@@ -23,7 +22,6 @@ const SectionTarget = {
 @connect(
   null,
   dispatch => ({
-    deleteSection: bindActionCreators(deleteSection, dispatch),
     openPopup: bindActionCreators(openPopup, dispatch)
   })
 )
@@ -36,7 +34,6 @@ export default class SectionItem extends Component {
     accepts: PropTypes.arrayOf(PropTypes.string).isRequired,
     isOver: PropTypes.bool,
     canDrop: PropTypes.bool,
-    deleteSection: PropTypes.func.isRequired,
     openPopup: PropTypes.func.isRequired
   };
 
@@ -44,7 +41,6 @@ export default class SectionItem extends Component {
     super();
     this.onClick = this.onClick.bind(this);
     this.onMenu = this.onMenu.bind(this);
-    this.onDelete = this.onDelete.bind(this);
   }
 
   onClick(e) {
@@ -57,9 +53,6 @@ export default class SectionItem extends Component {
     if (typeof this.props.section.id !== 'undefined') {
       this.props.openPopup(this.props.section.id, 'section', top, right);
     }
-  }
-  onDelete() {
-    this.props.deleteSection(this.props.section.id);
   }
 
   render() {
@@ -78,7 +71,6 @@ export default class SectionItem extends Component {
           <a href="#">
             {section.title} ({section.count})
           </a>
-          <StyledDeleteButton onClick={this.onDelete}>x</StyledDeleteButton>
         </StyledSectionItem>
       </div>
     );
@@ -94,9 +86,4 @@ const StyledSectionItem = styled.div`
     else return '#f5f5f5';
   }};
   font-weight: ${props => props.isSelected?'bold':'normal'};
-`;
-
-const StyledDeleteButton = styled.span`
-  float: right;
-  clear: right;
 `;

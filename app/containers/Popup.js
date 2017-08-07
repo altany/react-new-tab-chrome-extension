@@ -2,9 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import {isEqual} from 'lodash';
 import PopupWrapper from '../components/PopupWrapper';
-import { editBookmark } from '../actions/bookmarks';
-import { editSection } from '../actions/sections';
+import { editBookmark, deleteBookmark } from '../actions/bookmarks';
+import { editSection, deleteSection } from '../actions/sections';
 import { closePopup } from '../actions/popup';
 
 @connect(
@@ -29,7 +30,9 @@ import { closePopup } from '../actions/popup';
   },
   dispatch => ({
     editBookmark: bindActionCreators(editBookmark, dispatch),
+    deleteBookmark: bindActionCreators(deleteBookmark, dispatch),
     editSection: bindActionCreators(editSection, dispatch),
+    deleteSection: bindActionCreators(deleteSection, dispatch),
     closePopup: bindActionCreators(closePopup, dispatch)
   })
 )
@@ -42,7 +45,9 @@ export default class Popup extends Component {
       React.PropTypes.object
     ]),
     editBookmark: PropTypes.func.isRequired,
+    deleteBookmark: PropTypes.func.isRequired,
     editSection: PropTypes.func.isRequired,
+    deleteSection: PropTypes.func.isRequired,
     closePopup: PropTypes.func.isRequired
   };
 
@@ -57,10 +62,13 @@ export default class Popup extends Component {
         this.state.url = props.selected.url;
       }
     }
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.deleteEntry = this.deleteEntry.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.selected !== nextProps.selected) {
+    if (!isEqual(this.props.selected, nextProps.selected)) {
       this.setState({ title: nextProps.selected.title });
       if (nextProps.mode === 'bookmark') this.setState({ url: nextProps.selected.url });
     }
@@ -84,13 +92,20 @@ export default class Popup extends Component {
     this.props.closePopup();
   }
 
+  deleteEntry() {
+    (this.props.mode === 'bookmark')
+      ? this.props.deleteBookmark(this.props.selected.id)
+      : this.props.deleteSection(this.props.selected.id);
+    this.props.closePopup();
+  }
+
   render() {
     const { mode, top, left, selected } = this.props;
     if (!selected) return null;
     return (
       <StyledPopupWrapper
-          top={top}
-          left={left}
+        top={top}
+        left={left}
       >
         <form onSubmit={this.handleSubmit}>
           { mode === 'section' &&
@@ -123,6 +138,7 @@ export default class Popup extends Component {
           }
           <div>
             <StyledButton type='submit'>Save {mode}</StyledButton>
+            <StyledButton onClick={this.deleteEntry}>Delete</StyledButton>
             <StyledButton onClick={this.props.closePopup}>Cancel</StyledButton>
           </div>
         </form>
@@ -149,7 +165,7 @@ const StyledInput = styled.input.attrs({
 
 const StyledButton = styled.button`
   display: inline-block;
-  padding: 5px 10px;
+  padding: 3px 8px;
   font-size: 16px;
   cursor: pointer;
   text-align: center;
@@ -158,6 +174,6 @@ const StyledButton = styled.button`
   color: #fff;
   background-color: #b092ea;
   border: none;
-  border-radius: 15px;
+  border-radius: 10px;
   box-shadow: 0 5px #ddd;
 `;
