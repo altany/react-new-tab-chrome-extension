@@ -52,10 +52,10 @@ export default class SectionItem extends Component {
     this.props.onItemClick(this.props.section.id);
   }
   onMenu(e) {
-    console.log(this.node.getBoundingClientRect());
     e.preventDefault();
+    let {top, right} = this.node.getBoundingClientRect();
     if (typeof this.props.section.id !== 'undefined') {
-      this.props.openPopup(this.props.section.id, 'section');
+      this.props.openPopup(this.props.section.id, 'section', top, right);
     }
   }
   onDelete() {

@@ -56,8 +56,9 @@ export default class Bookmark extends Component {
   }
   onMenu(e) {
     e.preventDefault();
+    let {top, right} = this.node.getBoundingClientRect();
     if (typeof this.props.bookmark.id !== 'undefined') {
-      this.props.openPopup(this.props.bookmark.id, 'bookmark');
+      this.props.openPopup(this.props.bookmark.id, 'bookmark', top, right);
     }
   }
 
@@ -65,7 +66,7 @@ export default class Bookmark extends Component {
     const { bookmark, isDragging, connectDragSource  } = this.props;
     return (
       connectDragSource(
-        <div>
+        <div ref={node => this.node = node}>
           <StyledBookmarkLink
               opacity = {isDragging ? 0.4 : 1}
               href={bookmark.url}

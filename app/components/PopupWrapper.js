@@ -20,7 +20,6 @@ const StyledPopup = styled.div`
   display: block;
   background-color: white;
   position: absolute;
-  right: 0;
   padding: 20px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
   0 25px 50px 0 rgba(0, 0, 0, 0.1);

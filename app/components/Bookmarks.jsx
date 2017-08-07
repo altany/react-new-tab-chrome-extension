@@ -32,5 +32,6 @@ export default class Bookmarks extends Component {
 }
 
 const StyledBookmark = styled.main`
-  margin-left: 300px;
+  margin-left: 200px;
+  display: inline-block;
 `;

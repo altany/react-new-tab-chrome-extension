@@ -1,7 +1,9 @@
 import * as ActionTypes from '../constants/ActionTypes';
 
 const initialState = {
-  open: false
+  open: false,
+  top: 0,
+  left: 0
 };
 
 const actionsMap = {
@@ -10,7 +12,8 @@ const actionsMap = {
       open: true,
       mode: action.mode,
       id: action.id,
-      position: action.position
+      top: action.top,
+      left: action.left
     };
   },
   [ActionTypes.CLOSE_POPUP](state) {

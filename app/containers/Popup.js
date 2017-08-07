@@ -22,6 +22,8 @@ import { closePopup } from '../actions/popup';
     }
     return {
       mode: state.popup.mode,
+      top: state.popup.top,
+      left: state.popup.left,
       selected
     };
   },
@@ -83,10 +85,13 @@ export default class Popup extends Component {
   }
 
   render() {
-    const { mode, position, selected } = this.props;
+    const { mode, top, left, selected } = this.props;
     if (!selected) return null;
     return (
-      <StyledPopupWrapper position={position}>
+      <StyledPopupWrapper
+          top={top}
+          left={left}
+      >
         <form onSubmit={this.handleSubmit}>
           { mode === 'section' &&
             <div>
@@ -128,6 +133,9 @@ export default class Popup extends Component {
 
 const StyledPopupWrapper = styled(PopupWrapper)`
   border-radius: 5px;
+  position: absolute;
+  top: ${props=>props.top}px;  
+  left: ${props=>props.left}px;  
 `;
 
 const StyledInput = styled.input.attrs({

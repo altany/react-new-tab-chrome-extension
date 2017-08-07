@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import Sections from '../components/Sections';
 import Bookmarks from '../components/Bookmarks';
 import Popup from '../containers/Popup';
@@ -63,16 +64,21 @@ export default class BookmarkApp extends Component {
     } = this.props;
 
     return (
-      <div>
-          <Sections
-            sections={sections}
-            selected={selectedSection}
-            actions={sectionActions}
-            totalBookmarks={totalBookmarks}
-          />
-          <Bookmarks bookmarks={bookmarks} />
-          <Popup />
-        </div>
+      <StyledContainer>
+        <Sections
+          sections={sections}
+          selected={selectedSection}
+          actions={sectionActions}
+          totalBookmarks={totalBookmarks}
+        />
+        <Bookmarks bookmarks={bookmarks} />
+        <Popup />
+      </StyledContainer>
     );
   }
 }
+
+const StyledContainer = styled.div`
+  position: relative;
+`;
+
