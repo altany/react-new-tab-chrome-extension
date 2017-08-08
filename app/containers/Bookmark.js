@@ -69,14 +69,14 @@ export default class Bookmark extends Component {
         <div>
           <span ref={(node) => { this.node = node; }}>
             <StyledBookmarkLink>
-              <span
+              <a
                 opacity={isDragging ? 0.4 : 1}
                 href={bookmark.url}
                 onContextMenu={this.onMenu}
               >
                 <StyledFavicon url={bookmark.url} />
                 <StyledTitle>{bookmark.title}</StyledTitle>
-              </span>
+              </a>
             </StyledBookmarkLink>
           </span>
         </div>
@@ -85,7 +85,7 @@ export default class Bookmark extends Component {
   }
 }
 
-const StyledBookmarkLink = styled.a`
+const StyledBookmarkLink = styled.span`
   opacity: ${props => props.opacity};
 `;
 

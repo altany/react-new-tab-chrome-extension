@@ -9,6 +9,7 @@ chrome.storage.local.get('state', (obj) => {
   const initialState = JSON.parse(state || '{}');
 
   const createStore = require('../../app/store/configureStore');
+
   const store = createStore(initialState);
 
   if (document.querySelector('#root')) {
@@ -19,20 +20,18 @@ chrome.storage.local.get('state', (obj) => {
   }
   if (document.querySelector('#popupRoot')) {
     ReactDOM.render(
-      <PopupRoot store={store}/>,
+      <PopupRoot store={store} />,
       document.querySelector('#popupRoot')
     );
   }
 
-  window.addEventListener('load', function(e) {
-    let links = document.querySelectorAll('aside nav div, main div a');
-    Array.from(links).forEach(link => {
-      link.addEventListener('contextmenu', function(e) {
+  window.addEventListener('load', () => {
+    const links = document.querySelectorAll('aside nav div, main div a');
+    Array.from(links).forEach((link) => {
+      link.addEventListener('contextmenu', (e) => {
         e.preventDefault();
         return false;
       }, false);
-
     });
   });
-
 });
