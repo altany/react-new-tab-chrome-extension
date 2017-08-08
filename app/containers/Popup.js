@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import {isEqual} from 'lodash';
+import { isEqual } from 'lodash';
 import PopupWrapper from '../components/PopupWrapper';
 import { editBookmark, deleteBookmark } from '../actions/bookmarks';
 import { editSection, deleteSection } from '../actions/sections';

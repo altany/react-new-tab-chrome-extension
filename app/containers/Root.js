@@ -3,7 +3,8 @@ import { Provider } from 'react-redux';
 import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import styled from 'styled-components';
-import App from './App';
+
+// import App from './App';
 import BookmarkApp from './BookmarkApp';
 
 export default class Root extends Component {

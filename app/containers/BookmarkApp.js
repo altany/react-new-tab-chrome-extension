@@ -1,13 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 import Sections from '../components/Sections';
 import Bookmarks from '../components/Bookmarks';
 import Popup from '../containers/Popup';
 import * as sectionActions from '../actions/sections';
-import * as bookmarksActions from '../actions/bookmarks';
-
+import * as bookmarkActions from '../actions/bookmarks';
+import { closePopup } from '../actions/popup';
 
 @connect(
   (state) => {
@@ -32,8 +31,9 @@ import * as bookmarksActions from '../actions/bookmarks';
     };
   },
   dispatch => ({
-    sectionActions: bindActionCreators(sectionActions, dispatch),
-    bookmarksActions: bindActionCreators(bookmarksActions, dispatch)
+    boundSectionActions: bindActionCreators(sectionActions, dispatch),
+    boundBookmarksActions: bindActionCreators(bookmarkActions, dispatch),
+    closePopup: bindActionCreators(closePopup, dispatch)
   })
 )
 export default class BookmarkApp extends Component {
@@ -46,7 +46,8 @@ export default class BookmarkApp extends Component {
       React.PropTypes.number
     ]),
     totalBookmarks: PropTypes.number.isRequired,
-    sectionActions: PropTypes.object.isRequired
+    boundSectionActions: PropTypes.object.isRequired,
+    closePopup: PropTypes.func.isRequired
   };
 
   static defaultProps ={
@@ -59,26 +60,25 @@ export default class BookmarkApp extends Component {
   render() {
     const {
       bookmarks, sections, selectedSection,
-      sectionActions,
+      boundSectionActions,
       totalBookmarks
     } = this.props;
 
     return (
-      <StyledContainer>
+      <div
+        onClick={this.props.closePopup}
+      >
         <Sections
           sections={sections}
           selected={selectedSection}
-          actions={sectionActions}
+          actions={boundSectionActions}
           totalBookmarks={totalBookmarks}
         />
         <Bookmarks bookmarks={bookmarks} />
         <Popup />
-      </StyledContainer>
+      </div>
     );
   }
 }
 
-const StyledContainer = styled.div`
-  position: relative;
-`;
 

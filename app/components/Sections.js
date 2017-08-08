@@ -20,7 +20,7 @@ export default class Sections extends Component {
         <StyledSectionItem
           key={-1}
           section={{
-            title:'All',
+            title: 'All',
             count: totalBookmarks,
             selected: selected === null
           }}
@@ -53,11 +53,10 @@ export default class Sections extends Component {
 const StyledSectionItem = styled(SectionItem)`
   cursor: pointer;
   margin: 5px 10px;
-  font-weight: ${props => props.selected ? 'bold' : 'normal'};
+  font-weight: ${props => (props.selected ? 'bold' : 'normal')};
 `;
 
 const StyledSidebar = styled.aside`
-  position: relative;
   min-width: 200px;
   position: fixed;
   height: 100%;

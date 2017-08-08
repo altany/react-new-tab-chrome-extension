@@ -4,12 +4,16 @@ import styled from 'styled-components';
 export default class PopupWrapper extends Component {
 
   static propTypes = {
-    className: PropTypes.string
+    className: PropTypes.string,
+    children: PropTypes.node
   };
 
   render() {
     return (
-      <StyledPopup className={this.props.className}>
+      <StyledPopup
+        className={this.props.className}
+        onClick={console.log('TODO: prevent close popup')}
+      >
         <div>{this.props.children}</div>
       </StyledPopup>
     );
