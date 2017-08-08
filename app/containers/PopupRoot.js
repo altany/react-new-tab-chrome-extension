@@ -1,12 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import { Provider } from 'react-redux';
+import { Provider, connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import {addBookmark} from '../actions/bookmarks';
+import { addBookmark } from '../actions/bookmarks';
 
 @connect(
   state => ({
-      bookmarks: state.bookmarks
+    bookmarks: state.bookmarks
   }),
   dispatch => ({
     addBookmark: bindActionCreators(addBookmark, dispatch)
@@ -16,7 +15,11 @@ import {addBookmark} from '../actions/bookmarks';
 export default class PopupRoot extends Component {
 
   static propTypes = {
-    store: PropTypes.object.isRequired
+    store: PropTypes.object.isRequired,
+    bookmarks: PropTypes.array,
+    section: PropTypes.object,
+    onItemClick: PropTypes.func,
+    addBookmark: PropTypes.func
   };
 
   constructor(props) {
@@ -25,13 +28,13 @@ export default class PopupRoot extends Component {
       title: '',
       url: ''
     };
-    let _this = this;
-    chrome.tabs.getSelected(null, function(tab) { // the current tab info
+    const that = this;
+    chrome.tabs.getSelected(null, (tab) => { // the current tab info
       console.log(tab);
-      _this.setState({
+      that.setState({
         title: tab.title,
         url: tab.url,
-        bookmarkExists: props.bookmarks.filter( b => b.url === tab.url ).length
+        bookmarkExists: props.bookmarks.filter(b => b.url === tab.url).length
       });
     });
 
@@ -39,8 +42,12 @@ export default class PopupRoot extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  onClick() {
+    this.props.onItemClick(this.props.section.id);
+  }
+
   handleChange(event) {
-    this.setState({[event.target.name]: event.target.value});
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   handleSubmit(event) {
@@ -48,31 +55,30 @@ export default class PopupRoot extends Component {
     this.props.addBookmark(this.state.title, this.state.url);
   }
 
-  onClick() {
-    this.props.onItemClick(this.props.section.id);
-  }
-
   render() {
     const { store } = this.props;
-    const{title, url, bookmarkExists} = this.state;
-    if (bookmarkExists) return (
-      <div>Bookmark already exists</div>
-    );
-    else if (title.length && url.length) return (
-      <Provider store={store}>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Title:
-            <input type='text' name='title' value={title} onChange={this.handleChange} />
-          </label>
-          <label>
-            Url:
-            <input type='text' name='url' value={url} onChange={this.handleChange} />
-          </label>
-          <input type='submit' value='Add Bookmark' />
-        </form>
-      </Provider>
-    );
+    const { title, url, bookmarkExists } = this.state;
+    if (bookmarkExists) {
+      return (
+        <div>Bookmark already exists</div>
+      );
+    } else if (title.length && url.length) {
+      return (
+        <Provider store={store}>
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              Title:
+              <input type='text' name='title' value={title} onChange={this.handleChange} />
+            </label>
+            <label>
+              Url:
+              <input type='text' name='url' value={url} onChange={this.handleChange} />
+            </label>
+            <input type='submit' value='Add Bookmark' />
+          </form>
+        </Provider>
+      );
+    }
     return null;
   }
 }

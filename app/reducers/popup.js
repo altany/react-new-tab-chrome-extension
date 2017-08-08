@@ -16,7 +16,7 @@ const actionsMap = {
       left: action.left
     };
   },
-  [ActionTypes.CLOSE_POPUP](state) {
+  [ActionTypes.CLOSE_POPUP]() {
     return {
       open: false
     };

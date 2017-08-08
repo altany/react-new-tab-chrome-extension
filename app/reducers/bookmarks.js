@@ -26,14 +26,14 @@ const actionsMap = {
     );
   },
   [ActionTypes.EDIT_BOOKMARK_SECTION](state, action) {
-  return state.map(bookmark =>
-    (bookmark.id === action.id ?
-      Object.assign({}, bookmark, {
-        sectionId: action.sectionId
-      }) :
-      bookmark)
-  );
-}
+    return state.map(bookmark =>
+      (bookmark.id === action.id ?
+        Object.assign({}, bookmark, {
+          sectionId: action.sectionId
+        }) :
+          bookmark)
+      );
+  }
 };
 
 export default function bookmarks(state = [], action) {

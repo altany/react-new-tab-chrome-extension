@@ -10,9 +10,8 @@ export default class Input extends Component {
   };
 
   render() {
-    
     const { value, onChange, placeholder, name } = this.props;
-    
+
     return (
       <input
         type="text"

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import Img from "react-image-fallback";
+import Img from 'react-image-fallback';
 import styled from 'styled-components';
+
 export default class Favicon extends Component {
 
   static propTypes = {
@@ -8,7 +9,7 @@ export default class Favicon extends Component {
     className: PropTypes.string
   };
 
-  render () {
+  render() {
     const url = document.createElement('a'); // for the favicon
     url.setAttribute('href', this.props.url);
 

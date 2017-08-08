@@ -81,4 +81,3 @@ export default class BookmarkApp extends Component {
   }
 }
 
-

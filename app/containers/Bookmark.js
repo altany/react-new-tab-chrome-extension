@@ -63,7 +63,7 @@ export default class Bookmark extends Component {
   }
 
   render() {
-    const { bookmark, isDragging, connectDragSource  } = this.props;
+    const { bookmark, isDragging, connectDragSource } = this.props;
     return (
       connectDragSource(
         <div>

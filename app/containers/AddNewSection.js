@@ -2,8 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import {addSection} from '../actions/sections';
-
+import { addSection } from '../actions/sections';
 
 @connect(
   null,
@@ -33,6 +32,28 @@ export default class AddNewSection extends Component {
       this.sectionInput.focus();
     }
   }
+  onOpen() {
+    this.setState({ open: true });
+  }
+
+  onClose() {
+    this.setState({ open: false });
+  }
+
+  handleChange(event) {
+    this.setState({ section: event.target.value });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    if (this.state.section.length) {
+      this.props.addSection(this.state.section);
+    }
+    this.setState({
+      open: false,
+      section: ''
+    });
+  }
 
   renderAddNew() {
     if (this.state.open) {
@@ -44,42 +65,16 @@ export default class AddNewSection extends Component {
             value={this.state.section}
             onChange={this.handleChange}
             placeholder='New section name'
-            ref={(c)=>this.sectionInput=c}
+            ref={(c) => { this.sectionInput = c; }}
           />
           <input type='submit' value='Add' onClick={addSection} />
           <input type='button' value='Cancel' onClick={this.onClose} />
         </form>
       );
     }
-    else {
-      return (
-        <a href='#' onClick={this.onOpen}>+ New</a>
-      );
-    }
-
-  }
-
-  handleChange(event) {
-    this.setState({section: event.target.value});
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    if (this.state.section.length) {
-      this.props.addSection(this.state.section);
-    }
-    this.setState({
-      open: false,
-      section: ''
-    })
-  }
-
-  onOpen(e) {
-    this.setState({open: true});
-  }
-
-  onClose(e) {
-    this.setState({open: false});
+    return (
+      <a href='#' onClick={this.onOpen}>+ New</a>
+    );
   }
 
   render() {
