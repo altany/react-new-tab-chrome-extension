@@ -3,18 +3,18 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { DropTarget } from 'react-dnd';
 import styled from 'styled-components';
-import {openPopup} from '../actions/popup';
+import { openPopup } from '../actions/popup';
 
 const SectionTarget = {
-  drop(props, monitor) {
+  drop(props/*, monitor*/) {
     return {
       section: props.section
     };
   }
 };
 
-@DropTarget(props => props.accepts, SectionTarget, (connect, monitor) => ({
-  connectDropTarget: connect.dropTarget(),
+@DropTarget(props => props.accepts, SectionTarget, (connectDnd, monitor) => ({
+  connectDropTarget: connectDnd.dropTarget(),
   isOver: monitor.isOver(),
   canDrop: monitor.canDrop()
 }))
@@ -31,7 +31,7 @@ export default class SectionItem extends Component {
     onItemClick: PropTypes.func.isRequired,
     section: PropTypes.object.isRequired,
     connectDropTarget: PropTypes.func,
-    accepts: PropTypes.arrayOf(PropTypes.string).isRequired,
+    //accepts: PropTypes.arrayOf(PropTypes.string).isRequired,
     isOver: PropTypes.bool,
     canDrop: PropTypes.bool,
     openPopup: PropTypes.func.isRequired
@@ -49,41 +49,44 @@ export default class SectionItem extends Component {
   }
   onMenu(e) {
     e.preventDefault();
-    let {top, right} = this.node.getBoundingClientRect();
+    const { top, right } = this.node.getBoundingClientRect();
     if (typeof this.props.section.id !== 'undefined') {
-      this.props.openPopup(this.props.section.id, 'section', top, right);
+      this.props.openPopup(this.props.section.id, 'section', top, right + 10);
     }
   }
 
   render() {
-    const { section, accepts, canDrop, isOver, connectDropTarget } = this.props;
+    const { section/*, accepts*/, canDrop, isOver, connectDropTarget } = this.props;
 
     return connectDropTarget(
-      <div ref={node => this.node = node}>
+      <div>
         <StyledSectionItem
           isActive={canDrop && isOver}
           canDrop={canDrop}
           isSelected={section.selected}
-          onClick={this.onClick}
-          onContextMenu={this.onMenu}
-          id={section.id}
         >
-          <a href="#">
-            {section.title} ({section.count})
-          </a>
+          <span ref={(node) => { this.node = node; }}>
+            <span
+              onClick={this.onClick}
+              onContextMenu={this.onMenu}
+              id={section.id}
+            >
+              {section.title} ({section.count})
+            </span>
+          </span>
         </StyledSectionItem>
       </div>
     );
   }
 }
-
 const StyledSectionItem = styled.div`
   cursor: pointer;
   padding: 5px 10px;
-  background-color: ${props => {
+  user-select: none;
+  background-color: ${(props) => {
     if (props.isActive) return '#edc2ee';
     else if (props.canDrop) return '#d5ccde';
-    else return '#f5f5f5';
+    return '#f5f5f5';
   }};
-  font-weight: ${props => props.isSelected?'bold':'normal'};
+  font-weight: ${props => (props.isSelected ? 'bold' : 'normal')};
 `;

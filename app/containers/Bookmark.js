@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { DragSource } from 'react-dnd';
 import styled from 'styled-components';
 import Favicon from '../components/Favicon';
-import {editBookmarkSection} from '../actions/bookmarks';
-import {openPopup} from '../actions/popup';
+import { editBookmarkSection } from '../actions/bookmarks';
+import { openPopup } from '../actions/popup';
 
 const bookmarkSource = {
   beginDrag(props) {
@@ -36,8 +36,8 @@ const bookmarkSource = {
   })
 )
 
-@DragSource('bookmark', bookmarkSource, (connect, monitor) => ({
-  connectDragSource: connect.dragSource(),
+@DragSource('bookmark', bookmarkSource, (connectDnd, monitor) => ({
+  connectDragSource: connectDnd.dragSource(),
   isDragging: monitor.isDragging()
 }))
 
@@ -56,9 +56,9 @@ export default class Bookmark extends Component {
   }
   onMenu(e) {
     e.preventDefault();
-    let {top, right} = this.node.getBoundingClientRect();
+    const { top, right } = this.node.getBoundingClientRect();
     if (typeof this.props.bookmark.id !== 'undefined') {
-      this.props.openPopup(this.props.bookmark.id, 'bookmark', top, right);
+      this.props.openPopup(this.props.bookmark.id, 'bookmark', top, right + 10);
     }
   }
 
@@ -66,15 +66,19 @@ export default class Bookmark extends Component {
     const { bookmark, isDragging, connectDragSource  } = this.props;
     return (
       connectDragSource(
-        <div ref={node => this.node = node}>
-          <StyledBookmarkLink
-              opacity = {isDragging ? 0.4 : 1}
-              href={bookmark.url}
-              onContextMenu={this.onMenu}
-          >
-            <StyledFavicon url={bookmark.url} />
-            <StyledTitle>{bookmark.title}</StyledTitle>
-          </StyledBookmarkLink>
+        <div>
+          <span ref={(node) => { this.node = node; }}>
+            <StyledBookmarkLink>
+              <span
+                opacity={isDragging ? 0.4 : 1}
+                href={bookmark.url}
+                onContextMenu={this.onMenu}
+              >
+                <StyledFavicon url={bookmark.url} />
+                <StyledTitle>{bookmark.title}</StyledTitle>
+              </span>
+            </StyledBookmarkLink>
+          </span>
         </div>
       )
     );

@@ -40,6 +40,8 @@ import { closePopup } from '../actions/popup';
 export default class Popup extends Component {
   static propTypes = {
     mode: PropTypes.oneOf(['section', 'bookmark']),
+    top: PropTypes.number,
+    left: PropTypes.number,
     selected: PropTypes.oneOfType([
       React.PropTypes.bool,
       React.PropTypes.object
@@ -110,7 +112,7 @@ export default class Popup extends Component {
         <form onSubmit={this.handleSubmit}>
           { mode === 'section' &&
             <div>
-              <h3>Edit Section</h3>
+              <StyledPopupTitle>Edit Section</StyledPopupTitle>
               <StyledInput
                 name='title'
                 placeholder='Title'
@@ -121,7 +123,7 @@ export default class Popup extends Component {
           }
           {mode === 'bookmark' &&
             <div>
-              <h3>Edit Bookmark</h3>
+              <StyledPopupTitle>Edit Bookmark</StyledPopupTitle>
               <StyledInput
                 name='title'
                 placeholder='Title'
@@ -150,8 +152,8 @@ export default class Popup extends Component {
 const StyledPopupWrapper = styled(PopupWrapper)`
   border-radius: 5px;
   position: absolute;
-  top: ${props=>props.top}px;  
-  left: ${props=>props.left}px;  
+  top: ${props => props.top}px;  
+  left: ${props => props.left}px;  
 `;
 
 const StyledInput = styled.input.attrs({
@@ -175,5 +177,8 @@ const StyledButton = styled.button`
   background-color: #b092ea;
   border: none;
   border-radius: 10px;
-  box-shadow: 0 5px #ddd;
+  box-shadow: 0 2px #ddd;
+`;
+const StyledPopupTitle = styled.h3`
+  margin-top: 0;
 `;
