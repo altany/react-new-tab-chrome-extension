@@ -1,14 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { Provider, connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addBookmark } from '../actions/bookmarks';
+import { addBookmark, deleteBookmark } from '../actions/bookmarks';
 
 @connect(
   state => ({
     bookmarks: state.bookmarks
   }),
   dispatch => ({
-    addBookmark: bindActionCreators(addBookmark, dispatch)
+    addBookmark: bindActionCreators(addBookmark, dispatch),
+    deleteBookmark: bindActionCreators(deleteBookmark, dispatch)
   })
 )
 
@@ -19,7 +20,8 @@ export default class PopupRoot extends Component {
     bookmarks: PropTypes.array,
     section: PropTypes.object,
     onItemClick: PropTypes.func,
-    addBookmark: PropTypes.func
+    addBookmark: PropTypes.func,
+    deleteBookmark: PropTypes.func
   };
 
   constructor(props) {
@@ -28,20 +30,21 @@ export default class PopupRoot extends Component {
       title: '',
       url: ''
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  componentWillMount() {
     const that = this;
     chrome.tabs.getSelected(null, (tab) => { // the current tab info
-      console.log(tab);
       that.setState({
         title: tab.title,
         url: tab.url,
-        bookmarkExists: props.bookmarks.filter(b => b.url === tab.url).length
+        savedBookmark: this.props.bookmarks.filter(b => b.url === tab.url)
       });
     });
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
-
   onClick() {
     this.props.onItemClick(this.props.section.id);
   }
@@ -55,12 +58,19 @@ export default class PopupRoot extends Component {
     this.props.addBookmark(this.state.title, this.state.url);
   }
 
+  handleDelete() {
+    this.props.deleteBookmark(this.state.savedBookmark[0].id);
+  }
+
   render() {
     const { store } = this.props;
-    const { title, url, bookmarkExists } = this.state;
-    if (bookmarkExists) {
+    const { title, url, savedBookmark } = this.state;
+    if (savedBookmark && savedBookmark.length) {
       return (
-        <div>Bookmark already exists</div>
+        <div>
+          <span>Bookmark already exists</span>
+          <button onClick={this.handleDelete}>Remove</button>
+        </div>
       );
     } else if (title.length && url.length) {
       return (
