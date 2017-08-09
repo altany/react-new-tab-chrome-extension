@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { addSection } from '../actions/sections';
+import { StyledInput, StyledButton } from '../components/Styled';
 
 @connect(
   null,
@@ -28,8 +29,8 @@ export default class AddNewSection extends Component {
     };
   }
   componentDidUpdate() {
-    if (this.sectionInput) {
-      this.sectionInput.focus();
+    if (this.node) {
+      this.node.focus();
     }
   }
   onOpen() {
@@ -59,21 +60,20 @@ export default class AddNewSection extends Component {
     if (this.state.open) {
       return (
         <form onSubmit={this.handleSubmit}>
-          <input
-            type='text'
+          <StyledInput
             name='section'
             value={this.state.section}
             onChange={this.handleChange}
-            placeholder='New section name'
-            ref={(c) => { this.sectionInput = c; }}
+            placeholder='Type a section name'
+            innerRef={(node) => { this.node = node; }}
           />
-          <input type='submit' value='Add' onClick={addSection} />
-          <input type='button' value='Cancel' onClick={this.onClose} />
+          <StyledButton type='submit' onClick={addSection}>Add</StyledButton>
+          <StyledButton onClick={this.onClose}>Cancel</StyledButton>
         </form>
       );
     }
     return (
-      <a href='#' onClick={this.onOpen}>+ New</a>
+      <StyledButton onClick={this.onOpen}>+ New</StyledButton>
     );
   }
 

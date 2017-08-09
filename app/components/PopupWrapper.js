@@ -41,7 +41,7 @@ export default class PopupWrapper extends Component {
     return (
       <StyledPopup
         className={this.props.className}
-        innerRef={(node) => { this.node = node; }} // innerRef for styled-component
+        innerRef={(node) => { this.node = node; }}
       >
         <div>{this.props.children}</div>
       </StyledPopup>

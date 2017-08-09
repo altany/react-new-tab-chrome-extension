@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 import { isEqual } from 'lodash';
+import styled from 'styled-components';
+import { StyledInput, StyledButton } from '../components/Styled';
 import PopupWrapper from '../components/PopupWrapper';
 import { editBookmark, deleteBookmark } from '../actions/bookmarks';
 import { editSection, deleteSection } from '../actions/sections';
@@ -76,6 +77,12 @@ export default class Popup extends Component {
     }
   }
 
+  componentDidUpdate() {
+    if (this.inputNode) {
+      this.inputNode.focus();
+    }
+  }
+
   handleInputChange(e) {
     this.setState({
       [e.target.name]: e.target.value
@@ -118,6 +125,7 @@ export default class Popup extends Component {
                 placeholder='Title'
                 value={this.state.title || 'fail'}
                 onChange={this.handleInputChange}
+                innerRef={(node) => { this.inputNode = node; }}
               />
             </div>
           }
@@ -129,6 +137,7 @@ export default class Popup extends Component {
                 placeholder='Title'
                 value={this.state.title || 'fail'}
                 onChange={this.handleInputChange}
+                innerRef={(node) => { this.inputNode = node; }}
               />
               <StyledInput
                 name='url'
@@ -156,29 +165,6 @@ const StyledPopupWrapper = styled(PopupWrapper)`
   left: ${props => props.left}px;  
 `;
 
-const StyledInput = styled.input.attrs({
-  type: 'text',
-})`
-  border-radius: 4px;
-  width: 100%;
-  padding: 5px;
-  display: block;
-`;
-
-const StyledButton = styled.button`
-  display: inline-block;
-  padding: 3px 8px;
-  font-size: 16px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: #fff;
-  background-color: #b092ea;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 2px #ddd;
-`;
 const StyledPopupTitle = styled.h3`
   margin-top: 0;
 `;

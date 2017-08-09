@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Provider, connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addBookmark, deleteBookmark } from '../actions/bookmarks';
+import { StyledInput, StyledButton } from '../components/Styled';
 
 @connect(
   state => ({
@@ -45,6 +46,13 @@ export default class PopupRoot extends Component {
       });
     });
   }
+
+  componentDidUpdate() {
+    if (this.inputNode) {
+      this.inputNode.focus();
+    }
+  }
+
   onClick() {
     this.props.onItemClick(this.props.section.id);
   }
@@ -69,7 +77,7 @@ export default class PopupRoot extends Component {
       return (
         <div>
           <span>Bookmark already exists</span>
-          <button onClick={this.handleDelete}>Remove</button>
+          <StyledButton onClick={this.handleDelete}>Remove</StyledButton>
         </div>
       );
     } else if (title.length && url.length) {
@@ -78,13 +86,22 @@ export default class PopupRoot extends Component {
           <form onSubmit={this.handleSubmit}>
             <label>
               Title:
-              <input type='text' name='title' value={title} onChange={this.handleChange} />
+              <StyledInput
+                name='title'
+                value={title}
+                onChange={this.handleChange}
+                innerRef={(node) => { this.inputNode = node; }}
+              />
             </label>
             <label>
               Url:
-              <input type='text' name='url' value={url} onChange={this.handleChange} />
+              <StyledInput
+                name='url'
+                value={url}
+                onChange={this.handleChange}
+              />
             </label>
-            <input type='submit' value='Add Bookmark' />
+            <StyledButton type='submit'>Add Bookmark</StyledButton>
           </form>
         </Provider>
       );
