@@ -2,11 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import { Provider, connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addBookmark, deleteBookmark } from '../actions/bookmarks';
-import { StyledInput, StyledButton } from '../components/Styled';
+import { StyledInput, StyledButton, StyledSelect } from '../components/Styled';
 
 @connect(
   state => ({
-    bookmarks: state.bookmarks
+    bookmarks: state.bookmarks,
+    sections: state.sections
   }),
   dispatch => ({
     addBookmark: bindActionCreators(addBookmark, dispatch),
@@ -19,6 +20,7 @@ export default class PopupRoot extends Component {
   static propTypes = {
     store: PropTypes.object.isRequired,
     bookmarks: PropTypes.array,
+    sections: PropTypes.array,
     section: PropTypes.object,
     onItemClick: PropTypes.func,
     addBookmark: PropTypes.func,
@@ -29,7 +31,8 @@ export default class PopupRoot extends Component {
     super(props);
     this.state = {
       title: '',
-      url: ''
+      url: '',
+      selectedSection: -1
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -63,7 +66,13 @@ export default class PopupRoot extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.addBookmark(this.state.title, this.state.url);
+    const { title, url, selectedSection } = this.state;
+    if (selectedSection === -1) {
+      this.props.addBookmark(title, url);
+    } else {
+      this.props.addBookmark(title, url, parseInt(selectedSection, 10));
+    }
+    console.log(parseInt(selectedSection, 10));
   }
 
   handleDelete() {
@@ -71,8 +80,8 @@ export default class PopupRoot extends Component {
   }
 
   render() {
-    const { store } = this.props;
-    const { title, url, savedBookmark } = this.state;
+    const { store, sections } = this.props;
+    const { title, url, savedBookmark, selectedSection } = this.state;
     if (savedBookmark && savedBookmark.length) {
       return (
         <div>
@@ -101,6 +110,21 @@ export default class PopupRoot extends Component {
                 onChange={this.handleChange}
               />
             </label>
+            <label>
+              Add to:
+            </label>
+            <StyledSelect
+              name='selectedSection'
+              value={selectedSection}
+              onChange={this.handleChange}
+            >
+              <option value='-1'>Select folder</option>
+              {
+                sections.map((section, i) =>
+                  <option value={section.id} key={i}>{section.title}</option>
+                )
+              }
+            </StyledSelect>
             <StyledButton type='submit'>Add Bookmark</StyledButton>
           </form>
         </Provider>

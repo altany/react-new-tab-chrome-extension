@@ -24,3 +24,25 @@ export const StyledButton = styled.button`
   border-radius: 10px;
   box-shadow: 0 2px #ddd;
 `;
+
+export const StyledSelect = styled.select`
+  -webkit-appearance: button;
+  -webkit-padding-end: 20px;
+  -webkit-padding-start: 2px;
+  background-position: 97% center;
+  background-repeat: no-repeat;
+  border: 1px solid #AAA;
+  font-size: 16px;
+  margin: 20px;
+  overflow: hidden;
+  padding: 5px 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 300px;
+  color: #fff;
+  background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#b092ea, #b092ea 40%, #b092ea);
+  background-color: #b092ea;
+  border-radius: 8px;
+  padding-left: 15px;
+  outline: none;
+`;

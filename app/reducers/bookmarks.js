@@ -6,7 +6,7 @@ const actionsMap = {
       id: state.reduce((maxId, bookmark) => Math.max(bookmark.id, maxId), -1) + 1,
       title: action.title,
       url: action.url,
-      sectionId: action.sectionId || null
+      sectionId: (action.sectionId === null ? null : action.sectionId)
     }, ...state];
   },
   [ActionTypes.DELETE_BOOKMARK](state, action) {
