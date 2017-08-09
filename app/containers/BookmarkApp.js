@@ -65,9 +65,7 @@ export default class BookmarkApp extends Component {
     } = this.props;
 
     return (
-      <div
-        onClick={this.props.closePopup}
-      >
+      <div>
         <Sections
           sections={sections}
           selected={selectedSection}
