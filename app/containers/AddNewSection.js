@@ -87,7 +87,6 @@ export default class AddNewSection extends Component {
 }
 
 const StyledAddSection = styled.div`
-  font-weight: bold;
   position: absolute;
   bottom: 0;
 `;

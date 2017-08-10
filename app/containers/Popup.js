@@ -119,11 +119,10 @@ export default class Popup extends Component {
         <form onSubmit={this.handleSubmit}>
           { mode === 'section' &&
             <div>
-              <StyledPopupTitle>Edit Section</StyledPopupTitle>
               <StyledInput
                 name='title'
                 placeholder='Title'
-                value={this.state.title || 'fail'}
+                value={this.state.title}
                 onChange={this.handleInputChange}
                 innerRef={(node) => { this.inputNode = node; }}
               />
@@ -131,18 +130,17 @@ export default class Popup extends Component {
           }
           {mode === 'bookmark' &&
             <div>
-              <StyledPopupTitle>Edit Bookmark</StyledPopupTitle>
               <StyledInput
                 name='title'
                 placeholder='Title'
-                value={this.state.title || 'fail'}
+                value={this.state.title}
                 onChange={this.handleInputChange}
                 innerRef={(node) => { this.inputNode = node; }}
               />
               <StyledInput
                 name='url'
                 placeholder='url'
-                value={this.state.url || 'fail'}
+                value={this.state.url}
                 onChange={this.handleInputChange}
               />
             </div>
@@ -163,8 +161,4 @@ const StyledPopupWrapper = styled(PopupWrapper)`
   position: absolute;
   top: ${props => props.top}px;  
   left: ${props => props.left}px;  
-`;
-
-const StyledPopupTitle = styled.h3`
-  margin-top: 0;
 `;

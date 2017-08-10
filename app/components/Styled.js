@@ -3,9 +3,13 @@ import styled from 'styled-components';
 export const StyledInput = styled.input.attrs({
   type: 'text'
 })`
-  border: 1px solid purple;
-  border-radius: 4px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid black;
   width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
   padding: 5px;
   display: ${props => props.display || 'block'};
 `;
@@ -20,9 +24,14 @@ export const StyledButton = styled.button`
   outline: none;
   color: #fff;
   background-color: #b092ea;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 2px #ddd;
+  border: 1px solid #b092ea;
+  border-radius: 2px;
+  &:not(:last-of-type)
+    margin-right: 5px;
+  &:hover {
+    color: #4a12b7;
+    background-color: white;
+  }
 `;
 
 export const StyledSelect = styled.select`
