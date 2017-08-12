@@ -93,26 +93,18 @@ export default class PopupRoot extends Component {
       return (
         <Provider store={store}>
           <form onSubmit={this.handleSubmit}>
-            <label>
-              Title:
-              <StyledInput
-                name='title'
-                value={title}
-                onChange={this.handleChange}
-                innerRef={(node) => { this.inputNode = node; }}
-              />
-            </label>
-            <label>
-              Url:
-              <StyledInput
-                name='url'
-                value={url}
-                onChange={this.handleChange}
-              />
-            </label>
-            <label>
-              Add to:
-            </label>
+            <StyledInput
+              name='title'
+              value={title}
+              onChange={this.handleChange}
+              innerRef={(node) => { this.inputNode = node; }}
+            />
+            <StyledInput
+              name='url'
+              value={url}
+              onChange={this.handleChange}
+              label='url'
+            />
             <StyledSelect
               name='selectedSection'
               value={selectedSection}

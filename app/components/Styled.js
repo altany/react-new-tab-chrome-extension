@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import style from '../constants/style';
 
 export const StyledInput = styled.input.attrs({
   type: 'text'
@@ -11,26 +12,33 @@ export const StyledInput = styled.input.attrs({
   text-align: center;
   margin-bottom: 10px;
   padding: 5px;
+  font-weight: bold;
+  font-size: 15px;
+  color: ${style.mainColor};
   display: ${props => props.display || 'block'};
+  &::before {
+    content: ${props => props.label || ''};
+  }
 `;
 
 export const StyledButton = styled.button`
   display: inline-block;
   padding: 3px 8px;
-  font-size: 16px;
+  font-size: 13px;
+  letter-spacing: 1px;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
   outline: none;
   color: #fff;
-  background-color: #b092ea;
-  border: 1px solid #b092ea;
-  border-radius: 2px;
-  &:not(:last-of-type)
+  background-color: ${style.mainColor};
+  border: 1px solid ${style.mainColor};
+  border-radius: 4px;
+  &:not(:last-of-type) {
     margin-right: 5px;
+  }
   &:hover {
-    color: #4a12b7;
-    background-color: white;
+    background-color: ${style.lightMainColor};
   }
 `;
 
@@ -41,7 +49,7 @@ export const StyledSelect = styled.select`
   background-position: 97% center;
   background-repeat: no-repeat;
   border: 1px solid #AAA;
-  font-size: 16px;
+  font-size: 13px;
   margin: 20px;
   overflow: hidden;
   padding: 5px 10px;
@@ -49,9 +57,9 @@ export const StyledSelect = styled.select`
   white-space: nowrap;
   width: 300px;
   color: #fff;
-  background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#b092ea, #b092ea 40%, #b092ea);
-  background-color: #b092ea;
-  border-radius: 8px;
+  background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(${style.mainColor}, ${style.mainColor} 40%, ${style.mainColor});
+  background-color: c;
+  border-radius: 4px;
   padding-left: 15px;
   outline: none;
 `;
