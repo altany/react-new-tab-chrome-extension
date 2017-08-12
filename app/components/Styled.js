@@ -58,7 +58,7 @@ export const StyledSelect = styled.select`
   width: 300px;
   color: #fff;
   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(${style.mainColor}, ${style.mainColor} 40%, ${style.mainColor});
-  background-color: c;
+  background-color: ${style.mainColor}x;
   border-radius: 4px;
   padding-left: 15px;
   outline: none;
