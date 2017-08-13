@@ -8,6 +8,7 @@ import PopupWrapper from '../components/PopupWrapper';
 import { editBookmark, deleteBookmark } from '../actions/bookmarks';
 import { editSection, deleteSection } from '../actions/sections';
 import { closePopup } from '../actions/popup';
+import style from '../constants/style';
 
 @connect(
   (state) => {
@@ -146,7 +147,7 @@ export default class Popup extends Component {
             </div>
           }
           <div>
-            <StyledButton type='submit'>Save {mode}</StyledButton>
+            <StyledButton type='submit'>Save</StyledButton>
             <StyledButton onClick={this.deleteEntry}>Delete</StyledButton>
             <StyledButton onClick={this.props.closePopup}>Cancel</StyledButton>
           </div>
@@ -159,6 +160,7 @@ export default class Popup extends Component {
 const StyledPopupWrapper = styled(PopupWrapper)`
   border-radius: 5px;
   position: absolute;
+  background-color: ${style.popupBackgroundColor};
   top: ${props => props.top}px;  
   left: ${props => props.left}px;  
 `;

@@ -5,16 +5,16 @@ export const StyledInput = styled.input.attrs({
   type: 'text'
 })`
   border: 0;
-  outline: 0;
-  background: transparent;
-  border-bottom: 1px solid black;
+  outline-color: ${style.outlineColor};
   width: 100%;
   text-align: center;
   margin-bottom: 10px;
-  padding: 5px;
+  padding: 5px 0;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 14px;
   color: ${style.mainColor};
+  background-color: white;
+  border-radius: 4px;
   display: ${props => props.display || 'block'};
   &::before {
     content: ${props => props.label || ''};
@@ -50,16 +50,18 @@ export const StyledSelect = styled.select`
   background-repeat: no-repeat;
   border: 1px solid #AAA;
   font-size: 13px;
-  margin: 20px;
   overflow: hidden;
   padding: 5px 10px;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 300px;
+  min-width: 150px;
   color: #fff;
   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(${style.mainColor}, ${style.mainColor} 40%, ${style.mainColor});
-  background-color: ${style.mainColor}x;
+  background-color: ${style.mainColor};
   border-radius: 4px;
   padding-left: 15px;
   outline: none;
+  &:not(:last-of-child) {
+    margin-right: 5px;
+  }
 `;

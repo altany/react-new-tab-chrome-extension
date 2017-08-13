@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { Provider, connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import styled from 'styled-components';
 import { addBookmark, deleteBookmark } from '../actions/bookmarks';
 import { StyledInput, StyledButton, StyledSelect } from '../components/Styled';
+import style from '../constants/style';
 
 @connect(
   state => ({
@@ -92,7 +94,7 @@ export default class PopupRoot extends Component {
     } else if (title.length && url.length) {
       return (
         <Provider store={store}>
-          <form onSubmit={this.handleSubmit}>
+          <StyledForm onSubmit={this.handleSubmit}>
             <StyledInput
               name='title'
               value={title}
@@ -117,11 +119,16 @@ export default class PopupRoot extends Component {
                 )
               }
             </StyledSelect>
-            <StyledButton type='submit'>Add Bookmark</StyledButton>
-          </form>
+            <StyledButton type='submit'>Add</StyledButton>
+          </StyledForm>
         </Provider>
       );
     }
     return null;
   }
 }
+
+const StyledForm = styled.form`
+  background-color: ${style.popupBackgroundColor};
+  padding: 5px;
+`;
