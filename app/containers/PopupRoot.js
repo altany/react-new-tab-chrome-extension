@@ -74,11 +74,12 @@ export default class PopupRoot extends Component {
     } else {
       this.props.addBookmark(title, url, parseInt(selectedSection, 10));
     }
-    console.log(parseInt(selectedSection, 10));
+    window.close();
   }
 
   handleDelete() {
     this.props.deleteBookmark(this.state.savedBookmark[0].id);
+    window.close();
   }
 
   render() {
