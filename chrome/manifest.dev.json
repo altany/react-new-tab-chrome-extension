@@ -4,7 +4,7 @@
   "manifest_version": 2,
   "description": "Customise Chrome's new tab page",
   "browser_action": {
-    "default_title": "Chrome extension",
+    "default_title": "My bookmarks",
     "default_popup": "popup.html"
   },
   "icons": {

@@ -1,0 +1,13 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" viewBox="16 10 206 196"><g data-item-type="text" data-item="Business" id="logo__item--business" class="logo__item">
+    <g class="logo__item__inner" transform="translate(605 295.5) scale(1 1) rotate(0 0 0)">
+        <text data-part-id="logo__item--business" dy="0" dominant-baseline="auto" alignment-baseline="auto" font-family="Montserrat" font-size="32px" fill="#000000" letter-spacing="0" font-weight="bold" font-style="normal" data-font-family="Montserrat" data-font-weight="bold" data-font-style="normal" data-ttf-url="/builder_assets/fontsttf/font-montserrat-bold-normal.ttf"></text>
+    </g>
+</g><g data-item-type="shape" data-item="Shape" data-logo-item="" id="logo__item--shape_1" class="logo__item">
+    <g class="logo__item__inner" transform="translate(6.600002288818359 -3.9000015258789062) scale(2.2103168740327024 2.2103168740327024) rotate(0 0 0)">
+
+        <g>
+            <linearGradient id="logo__item--shape_1__0" gradientUnits="objectBoundingBox" x1="0.5" y1="0" x2="0.5" y2="1"><stop offset="0" style="stop-color:#1b3f6c"></stop><stop offset="1" style="stop-color:#00bb95"></stop></linearGradient><path fill="url(#logo__item--shape_1__0)" d="M6.5,43.5C0.3,19.8,24.6-4.8,50.9,15.8C78-4.8,101.1,19.7,95.2,43.5C88.7,70.2,54.1,94,54.1,94   S13.6,70.6,6.5,43.5z" data-part-id="logo__item--shape_1__0"></path>
+        </g>
+
+    </g>
+</g></svg>

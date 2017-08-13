@@ -1,13 +1,8 @@
-chrome.storage.local.get('todos', (obj) => {
-  let todos = obj.todos;
-  if (todos) {
-    todos = JSON.parse(todos);
-    const len = todos.filter(todo => !todo.marked).length;
-    if (len > 0) {
-      chrome.browserAction.setBadgeText({ text: len.toString() });
-    }
-  } else {
-    // Initial
-    chrome.browserAction.setBadgeText({ text: '1' });
+chrome.storage.local.get('state', (obj) => {
+  const { stateString } = obj;
+  const state = JSON.parse(stateString || '{}');
+  chrome.browserAction.setBadgeBackgroundColor({ color: [62, 83, 93, 1] });
+  if (state.bookmarks) {
+    chrome.browserAction.setBadgeText({ text: state.bookmarks.length.toString() });
   }
 });
