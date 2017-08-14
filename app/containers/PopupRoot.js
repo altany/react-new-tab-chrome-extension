@@ -43,7 +43,11 @@ export default class PopupRoot extends Component {
 
   componentWillMount() {
     const that = this;
-    chrome.tabs.getSelected(null, (tab) => { // the current tab info
+    chrome.tabs.query({
+      active: true,               // Select active tabs
+      lastFocusedWindow: true     // In the current window
+    }, (t) => {
+      const tab = t[0];
       that.setState({
         title: tab.title,
         url: tab.url,
