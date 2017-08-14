@@ -1,15 +1,13 @@
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="svg-editor-canvas" class="canvas" width="100%" height="100%"><g data-item-type="text" data-item="Business" id="logo__item--business" class="logo__item">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" viewBox="82 153 197 187"><g data-item-type="text" data-item="Business" id="logo__item--business" class="logo__item">
     <g class="logo__item__inner" transform="translate(605 295.5) scale(1 1) rotate(0 0 0)">
         <text data-part-id="logo__item--business" dy="0" dominant-baseline="auto" alignment-baseline="auto" font-family="Montserrat" font-size="32px" fill="#000000" letter-spacing="0" font-weight="bold" font-style="normal" data-font-family="Montserrat" data-font-weight="bold" data-font-style="normal" data-ttf-url="/builder_assets/fontsttf/font-montserrat-bold-normal.ttf"></text>
     </g>
-</g>
-    <g data-item-type="shape" data-item="Shape" data-logo-item="" id="logo__item--shape_1" class="logo__item logo__item--active logo__item-part--active">
-        <g class="logo__item__inner" transform="translate(500.60000228881836 124.0999984741211) scale(2.2103168740327024 2.2103168740327024) rotate(0 0 0)">
+</g><g data-item-type="shape" data-item="Shape" data-logo-item="" id="logo__item--shape_1" class="logo__item">
+    <g class="logo__item__inner" transform="translate(76.60000228881836 142.0999984741211) scale(2.051587357213652 2.051587357213652) rotate(0 0 0)">
 
-            <g>
-                <path fill="#9199c8" d="M6.5,43.5C0.3,19.8,24.6-4.8,50.9,15.8C78-4.8,101.1,19.7,95.2,43.5C88.7,70.2,54.1,94,54.1,94   S13.6,70.6,6.5,43.5z" data-part-id="logo__item--shape_1__0" class="logo__part--active"></path>
-            </g>
-
+        <g>
+            <path fill="#8bbdc8" d="M6.5,43.5C0.3,19.8,24.6-4.8,50.9,15.8C78-4.8,101.1,19.7,95.2,43.5C88.7,70.2,54.1,94,54.1,94   S13.6,70.6,6.5,43.5z" data-part-id="logo__item--shape_1__0" vector-effect="non-scaling-stroke" stroke="#199099" stroke-width="5"></path>
         </g>
+
     </g>
-</svg>
+</g></svg>

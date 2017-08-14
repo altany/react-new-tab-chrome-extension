@@ -4,7 +4,7 @@ import Root from '../../app/containers/Root';
 import PopupRoot from '../../app/containers/PopupRoot';
 import './todoapp.css';
 
-chrome.storage.local.get('state', (obj) => {
+chrome.storage.sync.get('state', (obj) => {
   const { state } = obj;
   const initialState = JSON.parse(state || '{}');
 

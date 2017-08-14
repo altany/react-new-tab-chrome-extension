@@ -1,8 +1,8 @@
 function saveState(state) {
-  chrome.storage.local.set({ state: JSON.stringify(state) });
+  chrome.storage.sync.set({ state: JSON.stringify(state) });
 }
 
-// todos unmarked count
+// count bookmarks
 function setBadge(bookmarks) {
   if (chrome.browserAction && bookmarks) {
     chrome.browserAction.setBadgeText({ text: bookmarks.length > 0 ? bookmarks.length.toString() : '' });
