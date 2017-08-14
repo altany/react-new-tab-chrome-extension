@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { isEqual } from 'lodash';
@@ -45,8 +46,8 @@ export default class Popup extends Component {
     top: PropTypes.number,
     left: PropTypes.number,
     selected: PropTypes.oneOfType([
-      React.PropTypes.bool,
-      React.PropTypes.object
+      PropTypes.bool,
+      PropTypes.object
     ]),
     editBookmark: PropTypes.func.isRequired,
     deleteBookmark: PropTypes.func.isRequired,

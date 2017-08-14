@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Sections from '../components/Sections';
@@ -42,8 +43,8 @@ export default class BookmarkApp extends Component {
     sections: PropTypes.array.isRequired,
     bookmarks: PropTypes.array.isRequired,
     selectedSection: PropTypes.oneOfType([
-      React.PropTypes.bool,
-      React.PropTypes.number
+      PropTypes.bool,
+      PropTypes.number
     ]),
     totalBookmarks: PropTypes.number.isRequired,
     boundSectionActions: PropTypes.object.isRequired,
