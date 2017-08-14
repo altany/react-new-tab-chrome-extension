@@ -9,6 +9,7 @@
     "compress-keygen": "crx keygen",
     "clean": "rimraf build/ dev/ *.zip *.crx",
     "lint": "eslint app chrome test scripts webpack/*.js",
+    "remotedev": "remotedev --hostname=localhost --port=8000",
     "test-e2e": "cross-env NODE_ENV=test mocha -r ./test/setup-app test/e2e",
     "test": "cross-env NODE_ENV=test mocha -r ./test/setup-app test/app"
   },
@@ -58,6 +59,7 @@
     "postcss-loader": "^1.2.1",
     "pug-cli": "^1.0.0-alpha6",
     "react-addons-test-utils": "^15.0.2",
+    "remote-redux-devtools": "^0.5.0",
     "rimraf": "^2.4.3",
     "selenium-webdriver": "^2.47.0",
     "shelljs": "^0.7.0",

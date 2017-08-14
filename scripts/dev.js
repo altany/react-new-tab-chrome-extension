@@ -1,6 +1,9 @@
 const tasks = require('./tasks');
 const createWebpackServer = require('webpack-httpolyglot-server');
 const devConfig = require('../webpack/dev.config');
+const remotedev = require('remotedev-server');
+
+remotedev({ hostname: 'localhost', port: 8000 });
 
 tasks.replaceWebpack();
 console.log('[Copy assets]');
