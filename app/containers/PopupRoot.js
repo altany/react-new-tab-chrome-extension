@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Provider, connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
 import { addBookmark, deleteBookmark } from '../actions/bookmarks';
@@ -21,7 +21,6 @@ import style from '../constants/style';
 export default class PopupRoot extends Component {
 
   static propTypes = {
-    store: PropTypes.object.isRequired,
     bookmarks: PropTypes.array,
     sections: PropTypes.array,
     section: PropTypes.object,
@@ -88,7 +87,7 @@ export default class PopupRoot extends Component {
   }
 
   render() {
-    const { store, sections } = this.props;
+    const { sections } = this.props;
     const { title, url, savedBookmark, selectedSection } = this.state;
     if (savedBookmark && savedBookmark.length) {
       return (
@@ -99,35 +98,33 @@ export default class PopupRoot extends Component {
       );
     } else if (title.length && url.length) {
       return (
-        <Provider store={store}>
-          <StyledForm onSubmit={this.handleSubmit}>
-            <StyledInput
-              name='title'
-              value={title}
-              onChange={this.handleChange}
-              innerRef={(node) => { this.inputNode = node; }}
-            />
-            <StyledInput
-              name='url'
-              value={url}
-              onChange={this.handleChange}
-              label='url'
-            />
-            <StyledSelect
-              name='selectedSection'
-              value={selectedSection}
-              onChange={this.handleChange}
-            >
-              <option value='-1'>Select folder</option>
-              {
-                sections.map((section, i) =>
-                  <option value={section.id} key={i}>{section.title}</option>
-                )
-              }
-            </StyledSelect>
-            <StyledButton type='submit'>Add</StyledButton>
-          </StyledForm>
-        </Provider>
+        <StyledForm onSubmit={this.handleSubmit}>
+          <StyledInput
+            name='title'
+            value={title}
+            onChange={this.handleChange}
+            innerRef={(node) => { this.inputNode = node; }}
+          />
+          <StyledInput
+            name='url'
+            value={url}
+            onChange={this.handleChange}
+            label='url'
+          />
+          <StyledSelect
+            name='selectedSection'
+            value={selectedSection}
+            onChange={this.handleChange}
+          >
+            <option value='-1'>Select folder</option>
+            {
+              sections.map((section, i) =>
+                <option value={section.id} key={i}>{section.title}</option>
+              )
+            }
+          </StyledSelect>
+          <StyledButton type='submit'>Add</StyledButton>
+        </StyledForm>
       );
     }
     return null;

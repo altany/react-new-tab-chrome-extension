@@ -1,7 +1,7 @@
 const tasks = require('./tasks');
 const createWebpackServer = require('webpack-httpolyglot-server');
-const devConfig = require('../webpack/dev.config');
 const remotedev = require('remotedev-server');
+const devConfig = require('../webpack/dev.config');
 
 remotedev({ hostname: 'localhost', port: 8000 });
 

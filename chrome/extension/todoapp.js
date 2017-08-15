@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import Root from '../../app/containers/Root';
-import PopupRoot from '../../app/containers/PopupRoot';
 import createStore from '../../app/store/configureStore';
 import './todoapp.css';
 
@@ -12,14 +12,10 @@ chrome.storage.sync.get('state', (obj) => {
 
   if (document.querySelector('#root')) {
     ReactDOM.render(
-      <Root store={store} />,
+      <Provider store={store}>
+        <Root isPopup={!!(document.querySelector('#root.popup'))} />
+      </Provider>,
       document.querySelector('#root')
-    );
-  }
-  if (document.querySelector('#popupRoot')) {
-    ReactDOM.render(
-      <PopupRoot store={store} />,
-      document.querySelector('#popupRoot')
     );
   }
 

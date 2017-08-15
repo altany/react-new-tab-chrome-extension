@@ -1,30 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Provider } from 'react-redux';
 import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import styled from 'styled-components';
-
 // import App from './App';
+import PopupRoot from './PopupRoot';
 import BookmarkApp from './BookmarkApp';
 
 export default class Root extends Component {
 
   static propTypes = {
-    store: PropTypes.object.isRequired
+    isPopup: PropTypes.bool
   };
 
+  static defaultProps = {
+    isPopup: false
+  }
+
   render() {
-    const { store } = this.props;
+    if (this.props.isPopup) {
+      return <PopupRoot />;
+    }
     return (
-      <Provider store={store}>
-        <StyledContainer>
-          {/*<App />*/}
-          <DragDropContextProvider backend={HTML5Backend}>
-            <BookmarkApp />
-          </DragDropContextProvider>
-        </StyledContainer>
-      </Provider>
+      <StyledContainer>
+        {/*<App />*/}
+        <DragDropContextProvider backend={HTML5Backend}>
+          <BookmarkApp />
+        </DragDropContextProvider>
+      </StyledContainer>
     );
   }
 }

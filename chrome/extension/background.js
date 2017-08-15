@@ -1,4 +1,4 @@
-const bluebird = require('bluebird');
+import bluebird from 'bluebird';
 
 global.Promise = bluebird;
 
@@ -25,14 +25,15 @@ promisifyAll(chrome, [
   'contextMenus'
 ]);
 promisifyAll(chrome.storage, [
-  'local'
+  'sync'
 ]);
 
 require('./background/contextMenus');
 require('./background/inject');
 require('./background/badge');
 
-chrome.tabs.onActivated.addListener((info) => {
+
+/*chrome.tabs.onActivated.addListener((info) => {
   chrome.tabs.get(info.tabId, (change) => {
     chrome.storage.sync.get('state', (obj) => {
       const { stateString } = obj;
@@ -47,4 +48,4 @@ chrome.tabs.onActivated.addListener((info) => {
       }
     });
   });
-});
+});*/

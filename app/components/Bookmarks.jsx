@@ -7,7 +7,7 @@ export default class Bookmarks extends Component {
 
   static propTypes = {
     bookmarks: PropTypes.array.isRequired
-};
+  };
 
   renderBookmarks() {
     const { bookmarks } = this.props;
