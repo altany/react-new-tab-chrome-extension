@@ -1,4 +1,8 @@
 import bluebird from 'bluebird';
+import icon from './background/icon';
+import badge from './background/badge';
+import inject from './background/inject';
+import contextMenus from './background/contextMenus';
 
 global.Promise = bluebird;
 
@@ -28,24 +32,8 @@ promisifyAll(chrome.storage, [
   'sync'
 ]);
 
-require('./background/contextMenus');
-require('./background/inject');
-require('./background/badge');
+contextMenus();
+inject();
+badge();
+icon();
 
-
-/*chrome.tabs.onActivated.addListener((info) => {
-  chrome.tabs.get(info.tabId, (change) => {
-    chrome.storage.sync.get('state', (obj) => {
-      const { stateString } = obj;
-      const state = JSON.parse(stateString || '{}');
-      console.log(state.bookmarks);
-      if (state.bookmarks && state.bookmarks.filter(b => b.url === change.url).length) {
-        chrome.browserAction.setIcon({ path: '/img/icon-48.png', tabId: info.tabId });
-        console.log('matching');
-      } else {
-        chrome.browserAction.setIcon({ path: '/img/icon-48-plain.png', tabId: info.tabId });
-        console.log('not matching');
-      }
-    });
-  });
-});*/

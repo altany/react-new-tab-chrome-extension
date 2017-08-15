@@ -1,4 +1,4 @@
-chrome.storage.sync.get('state', (obj) => {
+export default () => chrome.storage.sync.get('state', (obj) => {
   const { stateString } = obj;
   const state = JSON.parse(stateString || '{}');
   chrome.browserAction.setBadgeBackgroundColor({ color: [62, 83, 93, 1] });

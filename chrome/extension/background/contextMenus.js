@@ -25,17 +25,19 @@ function popWindow(type) {
   }
 }
 
-chrome.contextMenus.create({
-  id: CONTEXT_MENU_ID,
-  title: 'React Chrome Extension Example',
-  contexts: ['all'],
-  documentUrlPatterns: [
-    'https://github.com/*'
-  ]
-});
+export default () => {
+  chrome.contextMenus.create({
+    id: CONTEXT_MENU_ID,
+    title: 'React Chrome Extension Example',
+    contexts: ['all'],
+    documentUrlPatterns: [
+      'https://github.com/*'
+    ]
+  });
 
-chrome.contextMenus.onClicked.addListener((event) => {
-  if (event.menuItemId === CONTEXT_MENU_ID) {
-    popWindow('open');
-  }
-});
+  chrome.contextMenus.onClicked.addListener((event) => {
+    if (event.menuItemId === CONTEXT_MENU_ID) {
+      popWindow('open');
+    }
+  });
+}
