@@ -22,9 +22,6 @@ const bookmarkSource = {
     // ACTION FOR UPDATING SECTION CAN GO HERE!
     if (dropResult) {
       props.editBookmarkSection(item.id, dropResult.section.id);
-      console.log( // eslint-disable-line no-alert
-        `Dropped ${item.title} (bookmarkId: ${item.id}, sectionId: ${item.sectionId}) into ${dropResult.section.title} (sectionId: ${dropResult.section.id})`
-      );
     }
   }
 };
