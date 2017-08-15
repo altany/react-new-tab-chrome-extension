@@ -2,14 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from '../../app/containers/Root';
 import PopupRoot from '../../app/containers/PopupRoot';
+import createStore from '../../app/store/configureStore';
 import './todoapp.css';
 
 chrome.storage.sync.get('state', (obj) => {
   const { state } = obj;
   const initialState = JSON.parse(state || '{}');
-
-  const createStore = require('../../app/store/configureStore');
-
   const store = createStore(initialState);
 
   if (document.querySelector('#root')) {
