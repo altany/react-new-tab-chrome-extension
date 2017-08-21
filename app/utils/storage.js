@@ -16,18 +16,18 @@ export default function () {
       const state = store.getState();
       saveState(state);
       setBadge(state.bookmarks);
+      chrome.browserAction.setIcon({ path: `/img/icon-48.png` });
       chrome.tabs.query({
         active: true,               // Select active tabs
         lastFocusedWindow: true     // In the current window
       }, (t) => {
         const tab = t[0];
-        const iconType = (state.bookmarks && state.bookmarks.filter(b => b.url === tab.url).length)
-          ? ''
-          : '-plain';
-        //alert(iconType);
-        chrome.browserAction.setIcon({
-          path: `/img/icon-48${iconType}.png`,
-          tabId: tab.id
+
+        chrome.extension.sendMessage({
+          cmd: 'updateIcon',
+          bookmarks: state.bookmarks,
+          url: tab.url,
+          id: tab.id
         });
       });
     });
