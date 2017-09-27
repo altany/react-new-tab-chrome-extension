@@ -17,7 +17,7 @@ export const ADD_SECTION = 'ADD_SECTION';
 export const DELETE_SECTION = 'DELETE_SECTION';
 export const EDIT_SECTION = 'EDIT_SECTION';
 export const SELECT_SECTION = 'SELECT_SECTION';
-export const VIEW_ALL_SECTIONS = 'VIEW_ALL_SECTIONS';
+export const VIEW_ALL_SECTION = 'VIEW_ALL_SECTION';
 
 /** Popup **/
 export const OPEN_POPUP = 'OPEN_POPUP';

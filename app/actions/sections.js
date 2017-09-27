@@ -16,5 +16,5 @@ export function selectSection(id) {
   return { type: types.SELECT_SECTION, id };
 }
 export function viewAll() {
-  return { type: types.VIEW_ALL_SECTIONS };
+  return { type: types.VIEW_ALL_SECTION };
 }

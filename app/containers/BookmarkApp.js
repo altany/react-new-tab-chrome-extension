@@ -12,7 +12,7 @@ import { closePopup } from '../actions/popup';
 @connect(
   (state) => {
     let selectedSection = state.sections.filter(section => section.selected === true);
-    selectedSection = selectedSection.length ? selectedSection[0].id : null;
+    selectedSection = selectedSection.length ? selectedSection[0].id : -1;
 
     const sections = state.sections.map(section =>
       Object.assign({}, section, {

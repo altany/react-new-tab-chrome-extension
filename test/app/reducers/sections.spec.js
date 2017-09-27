@@ -8,12 +8,20 @@ describe('sections reducer', () => {
       sections(undefined, {})
     ).to.eql([{
       title: 'Work',
-      selected: false,
-      id: 0
+      id: 0,
+      selected: false
     }, {
       title: 'Fun',
       id: 1,
-      selected: false,
+      selected: false
+    }, {
+      title: 'Shopping',
+      id: 2,
+      selected: false
+    }, {
+      title: 'Social',
+      id: 3,
+      selected: false
     }]);
   });
 
@@ -121,7 +129,7 @@ describe('sections reducer', () => {
     }]);
   });
 
-  it('should handle VIEW_ALL_SECTIONS', () => {
+  it('should handle VIEW_ALL_SECTION', () => {
     expect(
       sections([{
         title: 'Work',
@@ -132,7 +140,7 @@ describe('sections reducer', () => {
         selected: false,
         id: 1
       }], {
-        type: types.VIEW_ALL_SECTIONS
+        type: types.VIEW_ALL_SECTION
       })
     ).to.eql([{
       title: 'Work',

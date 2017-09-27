@@ -32,9 +32,9 @@ describe('section actions', () => {
     });
   });
 
-  it('viewAll should create SELECT_SECTION action', () => {
+  it('viewAll should create VIEW_ALL_SECTION action', () => {
     expect(actions.viewAll()).to.eql({
-      type: types.VIEW_ALL_SECTIONS
+      type: types.VIEW_ALL_SECTION
     });
   });
 });

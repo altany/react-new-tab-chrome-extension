@@ -6,7 +6,7 @@ const actionsMap = {
       id: state.reduce((maxId, bookmark) => Math.max(bookmark.id, maxId), -1) + 1,
       title: action.title,
       url: action.url,
-      sectionId: (action.sectionId === null ? null : action.sectionId)
+      sectionId: (!action.sectionId ? -1 : action.sectionId)
     }, ...state];
   },
   [ActionTypes.DELETE_BOOKMARK](state, action) {
@@ -33,7 +33,16 @@ const actionsMap = {
         }) :
           bookmark)
       );
-  }
+  },
+  [ActionTypes.DELETE_SECTION](state, action) {
+    return state.map(bookmark =>
+      (bookmark.sectionId === action.id ?
+        Object.assign({}, bookmark, {
+          sectionId: -1
+        }) :
+        bookmark)
+    );
+  },
 };
 
 export default function bookmarks(state = [], action) {

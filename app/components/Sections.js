@@ -19,7 +19,7 @@ export default class Sections extends Component {
     return (
       <nav>
         <StyledSectionItem
-          key={-1}
+          key={-2}
           section={{
             title: 'All',
             count: totalBookmarks,

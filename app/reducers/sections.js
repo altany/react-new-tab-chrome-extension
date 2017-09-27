@@ -45,7 +45,7 @@ const actionsMap = {
       Object.assign({}, section, { selected: section.id === action.id })
     );
   },
-  [ActionTypes.VIEW_ALL_SECTIONS](state) {
+  [ActionTypes.VIEW_ALL_SECTION](state) {
     return state.map(section =>
       Object.assign({}, section, { selected: false })
     );
