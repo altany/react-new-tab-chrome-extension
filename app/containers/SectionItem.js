@@ -46,7 +46,7 @@ export default class SectionItem extends Component {
 
   onClick(e) {
     e.preventDefault();
-    this.props.onItemClick(this.props.section.id);
+    this.props.onItemClick();
   }
   onMenu(e) {
     e.preventDefault();

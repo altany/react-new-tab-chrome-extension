@@ -33,7 +33,11 @@ export default class Sections extends Component {
           <SectionItem
             section={section}
             key={index}
-            onItemClick={actions.selectSection}
+            onItemClick={
+              section.selected ?
+              actions.viewAll :
+              actions.selectSection.bind(this, section.id)
+          }
             accepts={['bookmark']}
           />
         ) }
